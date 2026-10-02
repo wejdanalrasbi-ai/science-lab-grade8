@@ -1,3601 +1,5573 @@
 /* =========================================================
-   مختبر العناصر والمركبات
-   FINAL UI — Grade 8
+   مختبر الحياة — الصف السابع
+   FINAL STYLE.CSS
 ========================================================= */
 
-* {
-  box-sizing: border-box;
-}
+:root{
+  --cream:#f6f1e8;
+  --cream-light:#fcfaf6;
+  --paper:#fffdf9;
 
-:root {
-  --purple: #7657d9;
-  --purple-dark: #55409f;
-  --purple-light: #eee8ff;
+  --green:#183f36;
+  --green-2:#28594c;
+  --green-3:#6f9483;
+  --sage:#dce8df;
+  --sage-light:#edf4ef;
 
-  --pink: #ef74b7;
-  --pink-light: #fff0f8;
+  --pink:#c67d86;
+  --pink-dark:#9f6069;
+  --pink-light:#f3dfe1;
 
-  --blue: #5aaee8;
-  --blue-light: #eaf7ff;
+  --gold:#d3ae58;
+  --gold-light:#f4e8bf;
 
-  --cyan: #58cbd0;
-  --green: #65c89c;
-  --orange: #f3a65a;
-  --yellow: #f4ca62;
+  --blue-light:#e6eff1;
 
-  --red: #ec7474;
-  --teal: #55beb1;
+  --text:#263b35;
+  --muted:#74827d;
+  --line:#e5e6df;
 
-  --text: #302d43;
-  --muted: #77758b;
+  --shadow:0 18px 55px rgba(36,61,53,.09);
+  --shadow-small:0 8px 25px rgba(36,61,53,.07);
 
-  --white: #ffffff;
-  --page: #f8f7fc;
-
-  --border: rgba(95, 75, 160, 0.12);
-
-  --shadow:
-    0 18px 50px rgba(70, 54, 130, 0.11);
-
-  --soft-shadow:
-    0 10px 30px rgba(70, 54, 130, 0.08);
+  --radius-xl:34px;
+  --radius-lg:26px;
+  --radius-md:19px;
+  --radius-sm:14px;
 }
 
 
 /* =========================================================
-   الصفحة
+   RESET
 ========================================================= */
 
-html {
-  scroll-behavior: smooth;
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
+html{
+  scroll-behavior:smooth;
+}
 
-  font-family:
-    "Tahoma",
-    "Arial",
-    sans-serif;
+body{
+  margin:0;
+  min-height:100vh;
+
+  font-family:"Tajawal",sans-serif;
+  color:var(--text);
 
   background:
     radial-gradient(
-      circle at top right,
-      #f3edff 0,
-      transparent 32%
+      circle at 8% 12%,
+      rgba(243,223,225,.65),
+      transparent 24%
     ),
     radial-gradient(
-      circle at bottom left,
-      #eafaff 0,
-      transparent 30%
+      circle at 91% 10%,
+      rgba(220,232,223,.8),
+      transparent 26%
     ),
-    var(--page);
+    linear-gradient(
+      145deg,
+      #f8f4ec,
+      #f6f3ed 48%,
+      #f5f7f3
+    );
 
-  color: var(--text);
+  overflow-x:hidden;
+}
 
-  overflow-x: hidden;
+button{
+  font-family:inherit;
 }
 
 button,
-input {
-  font: inherit;
+.station-card,
+.interactive-part,
+.flower-petal,
+.flower-anther,
+.flower-filament,
+.flower-sepal,
+.flower-ovule,
+.flower-stigma,
+.flower-style,
+.flower-ovary{
+  touch-action:manipulation;
 }
 
-button {
-  -webkit-tap-highlight-color: transparent;
+button:focus-visible{
+  outline:3px solid rgba(198,125,134,.3);
+  outline-offset:3px;
 }
 
-button:focus-visible,
-input:focus-visible {
+.hidden{
+  display:none !important;
+}
+
+
+/* =========================================================
+   خلفية زخرفية
+========================================================= */
+
+.page-decor{
+  position:fixed;
+  z-index:-2;
+  border-radius:50%;
+  filter:blur(2px);
+  pointer-events:none;
+}
+
+.decor-one{
+  width:360px;
+  height:360px;
+  right:-190px;
+  top:130px;
+  background:rgba(220,232,223,.55);
+}
+
+.decor-two{
+  width:300px;
+  height:300px;
+  left:-160px;
+  top:480px;
+  background:rgba(243,223,225,.5);
+}
+
+.decor-three{
+  width:250px;
+  height:250px;
+  right:12%;
+  bottom:-150px;
+  background:rgba(244,232,191,.28);
+}
+
+
+/* =========================================================
+   VIEWS
+========================================================= */
+
+.view{
+  display:none;
+  min-height:calc(100vh - 90px);
+}
+
+.view.active{
+  display:block;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.app-header{
+  width:min(1180px,calc(100% - 34px));
+  min-height:72px;
+
+  margin:15px auto 0;
+  padding:10px 14px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+
+  position:relative;
+  z-index:50;
+
+  border:1px solid rgba(255,255,255,.8);
+  border-radius:23px;
+
+  background:rgba(255,253,249,.82);
+
+  box-shadow:
+    0 10px 35px rgba(36,61,53,.07);
+
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+}
+
+.brand{
+  padding:5px;
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  border:0;
+  background:transparent;
+
+  color:var(--green);
+  cursor:pointer;
+  text-align:right;
+}
+
+.brand-mark{
+  width:42px;
+  height:42px;
+
+  position:relative;
+  flex:0 0 42px;
+
+  border-radius:14px;
+
+  background:var(--sage);
+}
+
+.brand-leaf{
+  position:absolute;
+
+  width:17px;
+  height:26px;
+
+  border-radius:100% 0 100% 0;
+
+  background:var(--green-2);
+}
+
+.leaf-a{
+  right:9px;
+  top:6px;
+  transform:rotate(20deg);
+}
+
+.leaf-b{
+  left:9px;
+  bottom:6px;
+  transform:rotate(200deg);
+}
+
+.brand-text strong{
+  display:block;
+  font-size:15px;
+  font-weight:900;
+}
+
+.brand-text small{
+  display:block;
+  margin-top:1px;
+
+  color:var(--muted);
+  font-size:9px;
+  font-weight:600;
+}
+
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  direction:ltr;
+}
+
+.mini-stat{
+  min-height:44px;
+  padding:6px 11px;
+
+  display:flex;
+  align-items:center;
+  gap:7px;
+
+  border:1px solid var(--line);
+  border-radius:14px;
+
+  background:#f9faf7;
+}
+
+.mini-stat > span{
+  width:28px;
+  height:28px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:9px;
+
+  background:var(--gold-light);
+  color:#a8863c;
+
+  font-size:12px;
+  font-weight:900;
+}
+
+.mini-stat .xp-icon{
+  background:var(--sage);
+  color:var(--green);
+  font-size:9px;
+}
+
+.mini-stat div{
+  direction:rtl;
+}
+
+.mini-stat small{
+  display:block;
+
+  color:var(--muted);
+  font-size:8px;
+  line-height:1;
+}
+
+.mini-stat strong{
+  display:block;
+  margin-top:3px;
+
+  color:var(--green);
+  font-size:12px;
+
+  direction:ltr;
+}
+
+.icon-button{
+  width:44px;
+  height:44px;
+
+  display:grid;
+  place-items:center;
+
+  border:0;
+  border-radius:14px;
+
+  background:var(--pink-light);
+  color:var(--pink-dark);
+
+  cursor:pointer;
+  font-weight:900;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.primary-button{
+  min-height:51px;
+  padding:12px 21px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:11px;
+
+  border:0;
+  border-radius:16px;
+
+  background:var(--green);
+  color:#fff;
+
+  box-shadow:
+    0 11px 25px rgba(24,63,54,.17);
+
+  cursor:pointer;
+
+  font-size:14px;
+  font-weight:900;
+
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease;
+}
+
+.primary-button:active{
+  transform:scale(.97);
+}
+
+.large-button{
+  min-width:205px;
+}
+
+.soft-button{
+  min-height:43px;
+  padding:9px 13px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+
+  border:1px solid var(--line);
+  border-radius:13px;
+
+  background:#fafbf8;
+  color:var(--green);
+
+  cursor:pointer;
+  font-size:11px;
+  font-weight:900;
+}
+
+
+/* =========================================================
+   WELCOME
+========================================================= */
+
+.welcome-shell{
+  width:min(1120px,calc(100% - 34px));
+  min-height:610px;
+
+  margin:24px auto 55px;
+  padding:65px 65px 55px;
+
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  align-items:center;
+  gap:40px;
+
+  position:relative;
+  overflow:hidden;
+
+  border:1px solid rgba(255,255,255,.72);
+  border-radius:var(--radius-xl);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,253,249,.76),
+      rgba(249,249,244,.63)
+    );
+
+  box-shadow:var(--shadow);
+}
+
+.welcome-copy{
+  position:relative;
+  z-index:5;
+}
+
+.unit-tag,
+.section-kicker{
+  color:var(--pink);
+  font-size:10px;
+  font-weight:900;
+}
+
+.unit-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+}
+
+.unit-tag span{
+  width:20px;
+  height:2px;
+  border-radius:10px;
+  background:var(--pink);
+}
+
+.main-title{
+  margin:10px 0 20px;
+
+  font-size:clamp(52px,7vw,82px);
+  line-height:.95;
+  font-weight:900;
+}
+
+.main-title span{
+  color:var(--green);
+}
+
+.main-title em{
+  color:var(--pink);
+  font-style:normal;
+}
+
+.welcome-intro{
+  max-width:500px;
+  margin:0 0 22px;
+
+  color:var(--muted);
+
+  font-size:16px;
+  line-height:2;
+}
+
+.welcome-features{
+  margin-bottom:28px;
+
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+}
+
+.welcome-features span{
+  padding:7px 10px;
+
+  border:1px solid var(--line);
+  border-radius:11px;
+
+  background:rgba(255,255,255,.66);
+
+  color:var(--green-2);
+  font-size:9px;
+  font-weight:800;
+}
+
+
+/* =========================================================
+   WELCOME ART
+========================================================= */
+
+.welcome-art{
+  min-height:430px;
+  position:relative;
+  display:grid;
+  place-items:center;
+}
+
+.art-orbit{
+  position:absolute;
+  border:1px dashed rgba(24,63,54,.15);
+  border-radius:50%;
+}
+
+.orbit-a{
+  width:320px;
+  height:320px;
+}
+
+.orbit-b{
+  width:405px;
+  height:405px;
+}
+
+.art-dot{
+  position:absolute;
+
+  width:11px;
+  height:11px;
+
+  border-radius:50%;
+}
+
+.dot-a{
+  top:45px;
+  right:65px;
+  background:var(--pink);
+}
+
+.dot-b{
+  left:35px;
+  top:185px;
+  background:var(--gold);
+}
+
+.dot-c{
+  right:30px;
+  bottom:80px;
+  background:var(--green-3);
+}
+
+.plant-art{
+  width:250px;
+  height:370px;
+  position:relative;
+}
+
+.plant-soil{
+  position:absolute;
+
+  width:220px;
+  height:42px;
+
+  bottom:36px;
+  left:15px;
+
+  border-radius:50%;
+
+  background:#c7a786;
+
+  box-shadow:
+    inset 0 -8px 0 rgba(112,78,53,.09);
+}
+
+.plant-stem{
+  position:absolute;
+
+  width:13px;
+  height:220px;
+
+  left:50%;
+  bottom:65px;
+
+  transform:translateX(-50%);
+
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #527963,
+      #789b80,
+      #436d58
+    );
+}
+
+.plant-leaf{
+  position:absolute;
+
+  width:105px;
+  height:55px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #89a990,
+      #5e876e
+    );
+
+  border-radius:100% 0 100% 0;
+}
+
+.plant-leaf-left{
+  left:18px;
+  bottom:145px;
+  transform:rotate(12deg);
+}
+
+.plant-leaf-right{
+  right:18px;
+  bottom:190px;
+  transform:scaleX(-1) rotate(10deg);
+}
+
+.plant-roots{
+  position:absolute;
+
+  width:110px;
+  height:80px;
+
+  left:70px;
+  bottom:0;
+}
+
+.plant-roots span{
+  position:absolute;
+
+  width:4px;
+  height:70px;
+
+  top:0;
+  left:53px;
+
+  border-radius:10px;
+
+  background:#94765c;
+
+  transform-origin:top;
+}
+
+.plant-roots span:nth-child(1){
+  transform:rotate(18deg);
+}
+
+.plant-roots span:nth-child(2){
+  transform:rotate(-18deg);
+}
+
+.plant-roots span:nth-child(3){
+  transform:rotate(34deg) scale(.8);
+}
+
+.plant-roots span:nth-child(4){
+  transform:rotate(-34deg) scale(.8);
+}
+
+.plant-flower{
+  width:160px;
+  height:160px;
+
+  position:absolute;
+
+  left:45px;
+  top:0;
+}
+
+.petal{
+  width:68px;
+  height:88px;
+
+  position:absolute;
+
+  left:46px;
+  top:36px;
+
+  border-radius:70% 70% 55% 55%;
+
+  transform-origin:34px 44px;
+
+  background:
+    linear-gradient(
+      #e5a9af,
+      #c87882
+    );
+}
+
+.p1{
+  transform:rotate(0deg) translateY(-32px);
+}
+
+.p2{
+  transform:rotate(72deg) translateY(-32px);
+}
+
+.p3{
+  transform:rotate(144deg) translateY(-32px);
+}
+
+.p4{
+  transform:rotate(216deg) translateY(-32px);
+}
+
+.p5{
+  transform:rotate(288deg) translateY(-32px);
+}
+
+.flower-center{
+  width:53px;
+  height:53px;
+
+  position:absolute;
+
+  left:53px;
+  top:53px;
+
+  border-radius:50%;
+
+  background:#e2bf66;
+
+  box-shadow:
+    inset 0 -5px 0 rgba(133,95,28,.08);
+}
+
+.art-note{
+  position:absolute;
+
+  min-width:92px;
+  padding:9px 12px;
+
+  display:flex;
+  align-items:center;
+  gap:7px;
+
+  border:1px solid rgba(255,255,255,.85);
+  border-radius:14px;
+
+  background:rgba(255,255,255,.82);
+
+  box-shadow:var(--shadow-small);
+
+  color:var(--green);
+  font-size:9px;
+  font-weight:900;
+}
+
+.art-note span{
+  color:var(--pink);
+  direction:ltr;
+}
+
+.note-one{
+  top:62px;
+  left:0;
+}
+
+.note-two{
+  top:210px;
+  right:-5px;
+}
+
+.note-three{
+  bottom:40px;
+  left:20px;
+}
+
+
+/* =========================================================
+   MAP
+========================================================= */
+
+.map-shell{
+  width:min(970px,calc(100% - 34px));
+  margin:52px auto 80px;
+}
+
+.map-heading{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:30px;
+
+  margin-bottom:23px;
+}
+
+.map-heading h2{
+  margin:4px 0 7px;
+
+  color:var(--green);
+
+  font-size:clamp(28px,4vw,41px);
+  line-height:1.2;
+}
+
+.map-heading p{
+  max-width:610px;
+  margin:0;
+
+  color:var(--muted);
+
+  font-size:12px;
+  line-height:1.9;
+}
+
+.map-progress-ring{
+  width:88px;
+  height:88px;
+
+  flex:0 0 88px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:28px;
+
+  background:var(--sage);
+
+  color:var(--green);
+}
+
+.map-progress-ring strong{
+  font-size:20px;
+  direction:ltr;
+}
+
+.map-progress-ring small{
+  margin-top:2px;
+  font-size:8px;
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.journey-progress{
+  padding:19px 21px;
+  margin-bottom:22px;
+
+  border:1px solid var(--line);
+  border-radius:20px;
+
+  background:rgba(255,253,249,.82);
+
+  box-shadow:var(--shadow-small);
+}
+
+.journey-progress-top{
+  margin-bottom:11px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  color:var(--green);
+  font-size:10px;
+  font-weight:800;
+}
+
+.journey-progress-top strong{
+  direction:ltr;
+}
+
+.progress-track{
+  width:100%;
+  height:8px;
+
+  overflow:hidden;
+
+  border-radius:20px;
+
+  background:#e8ece8;
+}
+
+.progress-fill{
+  width:0;
+  height:100%;
+
+  border-radius:inherit;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--pink),
+      var(--green-3),
+      var(--green)
+    );
+
+  transition:width .65s ease;
+}
+
+
+/* =========================================================
+   STATIONS
+========================================================= */
+
+.stations-container{
+  display:grid;
+  gap:12px;
+}
+
+.station-card{
+  width:100%;
+  min-height:112px;
+
+  padding:15px 17px;
+
+  display:grid;
+  grid-template-columns:66px 1fr auto;
+  align-items:center;
+  gap:15px;
+
+  position:relative;
+
+  border:1px solid var(--line);
+  border-radius:21px;
+
+  background:rgba(255,253,249,.91);
+
+  box-shadow:
+    0 7px 23px rgba(36,61,53,.05);
+
+  text-align:right;
+
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    border-color .18s ease;
+}
+
+.station-card:not(.locked){
+  cursor:pointer;
+}
+
+.station-card:not(.locked):active{
+  transform:scale(.987);
+}
+
+.station-card.current{
+  border-color:rgba(198,125,134,.48);
+
+  box-shadow:
+    0 10px 28px rgba(198,125,134,.09);
+}
+
+.station-card.completed{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,253,249,.98),
+      rgba(237,244,239,.9)
+    );
+}
+
+.station-card.locked{
+  opacity:.54;
+  box-shadow:none;
+  background:#f1f1ed;
+}
+
+.station-number{
+  width:60px;
+  height:60px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:18px;
+
+  background:var(--sage);
+
+  color:var(--green);
+
+  font-size:17px;
+  font-weight:900;
+
+  direction:ltr;
+}
+
+.station-card.completed .station-number{
+  background:var(--green);
+  color:#fff;
+}
+
+.station-card.locked .station-number{
+  background:#e1e3df;
+  color:#9ba49f;
+}
+
+.station-info small{
+  display:block;
+
+  margin-bottom:3px;
+
+  color:var(--pink);
+
+  font-size:8px;
+  font-weight:900;
+
+  direction:ltr;
+  text-align:right;
+}
+
+.station-info h3{
+  margin:0 0 4px;
+
+  color:var(--green);
+
+  font-size:16px;
+}
+
+.station-info p{
+  margin:0;
+
+  color:var(--muted);
+
+  font-size:10px;
+  line-height:1.65;
+}
+
+.station-state{
+  min-width:94px;
+  min-height:38px;
+
+  padding:8px 10px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+
+  border-radius:12px;
+
+  background:#eef3ef;
+
+  color:var(--green);
+
+  font-size:9px;
+  font-weight:900;
+}
+
+.station-card.current .station-state{
+  background:var(--pink-light);
+  color:var(--pink-dark);
+}
+
+.station-card.completed .station-state{
+  background:var(--sage);
+}
+
+.station-card.locked .station-state{
+  background:#e7e8e5;
+  color:#929a96;
+}
+
+
+/* =========================================================
+   TITLES
+========================================================= */
+
+.titles-panel{
+  margin-top:45px;
+  padding:25px;
+
+  border:1px solid var(--line);
+  border-radius:26px;
+
+  background:rgba(255,253,249,.72);
+}
+
+.titles-heading{
+  margin-bottom:18px;
+
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.titles-heading h3{
+  margin:3px 0 0;
+  color:var(--green);
+  font-size:21px;
+}
+
+.titles-count{
+  padding:7px 10px;
+
+  border-radius:11px;
+
+  background:var(--pink-light);
+  color:var(--pink-dark);
+
+  font-size:10px;
+  font-weight:900;
+
+  direction:ltr;
+}
+
+.titles-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:9px;
+}
+
+.title-badge{
+  min-height:100px;
+  padding:12px 8px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+
+  border:1px solid #e6e7e3;
+  border-radius:17px;
+
+  background:#f0f1ed;
+
+  color:#a0a8a4;
+
+  text-align:center;
+}
+
+.title-badge.unlocked{
+  background:
+    linear-gradient(
+      145deg,
+      #fff9f8,
+      #f2f7f3
+    );
+
+  color:var(--green);
+
+  box-shadow:var(--shadow-small);
+}
+
+.title-badge-icon{
+  width:36px;
+  height:36px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:12px;
+
+  background:#e3e5e1;
+}
+
+.title-badge.unlocked .title-badge-icon{
+  background:var(--gold-light);
+  color:#a7853b;
+}
+
+.title-badge strong{
+  font-size:9px;
+  line-height:1.4;
+}
+
+
+/* =========================================================
+   LESSON
+========================================================= */
+
+.lesson-shell{
+  width:min(1190px,calc(100% - 28px));
+  margin:20px auto 70px;
+}
+
+.lesson-heading{
+  min-height:64px;
+  padding:10px 13px;
+  margin-bottom:12px;
+
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  gap:10px;
+
+  border:1px solid var(--line);
+  border-radius:20px;
+
+  background:rgba(255,253,249,.88);
+
+  box-shadow:var(--shadow-small);
+}
+
+.lesson-heading .soft-button{
+  justify-self:start;
+}
+
+.lesson-heading-center{
+  text-align:center;
+}
+
+.lesson-code{
+  display:block;
+
+  color:var(--pink);
+
+  font-size:8px;
+  font-weight:900;
+
+  direction:ltr;
+}
+
+.lesson-heading-center h2{
+  margin:2px 0 0;
+
+  color:var(--green);
+
+  font-size:15px;
+}
+
+.lesson-status{
+  justify-self:end;
+
+  padding:7px 10px;
+
+  border-radius:10px;
+
+  background:var(--blue-light);
+
+  color:#59737a;
+
+  font-size:8px;
+  font-weight:900;
+}
+
+.lesson-grid{
+  display:grid;
+  grid-template-columns:245px 1fr;
+  gap:13px;
+  align-items:start;
+}
+
+
+/* =========================================================
+   MISSION PANEL
+========================================================= */
+
+.mission-panel{
+  padding:18px;
+
+  position:sticky;
+  top:15px;
+
+  border:1px solid var(--line);
+  border-radius:23px;
+
+  background:rgba(255,253,249,.91);
+
+  box-shadow:var(--shadow-small);
+}
+
+.mission-number{
+  min-height:80px;
+  padding:13px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  border-radius:18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--green),
+      #315e51
+    );
+
+  color:#fff;
+}
+
+.mission-number small{
+  font-size:9px;
+  opacity:.75;
+}
+
+.mission-number strong{
+  font-size:29px;
+  direction:ltr;
+}
+
+.mission-copy{
+  padding:19px 2px 17px;
+}
+
+.mission-copy h3{
+  margin:3px 0 6px;
+
+  color:var(--green);
+
+  font-size:18px;
+  line-height:1.4;
+}
+
+.mission-copy p{
+  margin:0;
+
+  color:var(--muted);
+
+  font-size:10px;
+  line-height:1.75;
+}
+
+
+/* =========================================================
+   DISCOVERIES
+========================================================= */
+
+.discoveries-box{
+  padding-top:15px;
+  border-top:1px solid var(--line);
+}
+
+.discoveries-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  color:var(--green);
+
+  font-size:9px;
+  font-weight:900;
+}
+
+.discoveries-head strong{
+  color:var(--pink);
+  direction:ltr;
+}
+
+.discoveries-list{
+  margin-top:10px;
+  display:grid;
+  gap:6px;
+}
+
+.discovery-item{
+  min-height:37px;
+  padding:7px 9px;
+
+  display:flex;
+  align-items:center;
+  gap:7px;
+
+  border-radius:11px;
+
+  background:#f2f3ef;
+
+  color:#929c97;
+
+  font-size:9px;
+  font-weight:700;
+}
+
+.discovery-item .check{
+  width:20px;
+  height:20px;
+
+  flex:0 0 20px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:7px;
+
+  background:#e1e4e0;
+
+  font-size:8px;
+}
+
+.discovery-item.done{
+  background:var(--sage-light);
+  color:var(--green);
+}
+
+.discovery-item.done .check{
+  background:var(--green);
+  color:#fff;
+}
+
+.mission-tip{
+  margin-top:15px;
+  padding:10px;
+
+  display:flex;
+  align-items:flex-start;
+  gap:7px;
+
+  border-radius:12px;
+
+  background:#f8f4ec;
+}
+
+.tip-mark{
+  width:21px;
+  height:21px;
+
+  flex:0 0 21px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:7px;
+
+  background:var(--gold-light);
+  color:#9d7c35;
+
+  font-size:9px;
+  font-weight:900;
+}
+
+.mission-tip p{
+  margin:0;
+
+  color:#7b7668;
+
+  font-size:8px;
+  line-height:1.65;
+}
+
+
+/* =========================================================
+   LAB
+========================================================= */
+
+.lab-panel{
+  min-width:0;
+  padding:20px;
+
+  border:1px solid var(--line);
+  border-radius:25px;
+
+  background:rgba(255,253,249,.94);
+
+  box-shadow:var(--shadow);
+}
+
+.lab-top{
+  min-height:48px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.lab-top h3{
+  margin:2px 0 0;
+
+  color:var(--green);
+
+  font-size:20px;
+}
+
+.experiment-step{
+  padding:7px 10px;
+
+  border-radius:10px;
+
+  background:var(--pink-light);
+  color:var(--pink-dark);
+
+  font-size:8px;
+  font-weight:900;
+}
+
+.experiment-tools{
+  min-height:50px;
+
+  margin:8px 0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:7px;
+}
+
+.tool-button,
+.action-button,
+.body-action{
+  min-height:43px;
+  padding:9px 13px;
+
+  border:1px solid #dfe4df;
+  border-radius:12px;
+
+  background:#fff;
+  color:var(--green);
+
+  cursor:pointer;
+
+  font-size:10px;
+  font-weight:900;
+
+  transition:
+    transform .16s ease,
+    background .16s ease;
+}
+
+.tool-button:active,
+.action-button:active,
+.body-action:active{
+  transform:scale(.96);
+}
+
+.tool-button.primary,
+.action-button.primary,
+.body-action.primary{
+  border-color:var(--green);
+
+  background:var(--green);
+  color:#fff;
+}
+
+
+/* =========================================================
+   EXPERIMENT AREA
+========================================================= */
+
+.experiment-area{
+  width:100%;
+  min-height:560px;
+
+  position:relative;
+  overflow:hidden;
+
+  border:1px solid #e2e7e2;
+  border-radius:22px;
+
+  background:
+    radial-gradient(
+      circle at 50% 22%,
+      rgba(255,255,255,.96),
+      transparent 32%
+    ),
+    linear-gradient(
+      #edf4f0,
+      #faf6ed
+    );
+}
+
+
+/* =========================================================
+   التفاعل مع الشكل نفسه
+========================================================= */
+
+.interactive-part,
+.flower-petal,
+.flower-anther,
+.flower-filament,
+.flower-sepal,
+.flower-ovule,
+.flower-stigma,
+.flower-style,
+.flower-ovary,
+.organ-part,
+.bone-part,
+.joint-part{
+  cursor:pointer;
+
+  transition:
+    filter .18s ease,
+    opacity .18s ease,
+    transform .18s ease;
+}
+
+.interactive-part.selected,
+.flower-petal.selected,
+.flower-anther.selected,
+.flower-filament.selected,
+.flower-sepal.selected,
+.flower-ovule.selected,
+.flower-stigma.selected,
+.flower-style.selected,
+.flower-ovary.selected,
+.organ-part.selected,
+.bone-part.selected,
+.joint-part.selected{
+  filter:
+    brightness(1.08)
+    drop-shadow(
+      0 0 8px rgba(198,125,134,.45)
+    );
+}
+
+.interactive-part:active,
+.flower-petal:active,
+.flower-anther:active,
+.flower-filament:active,
+.flower-sepal:active,
+.flower-ovule:active,
+.flower-stigma:active,
+.flower-style:active,
+.flower-ovary:active{
+  opacity:.82;
+}
+
+
+/* =========================================================
+   قطرات الماء
+========================================================= */
+
+.water-drop{
+  width:10px;
+  height:15px;
+
+  position:absolute;
+  z-index:40;
+
+  border-radius:
+    70% 40% 65% 45%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #a8d5e5,
+      #67a9c4
+    );
+
+  transform:rotate(45deg);
+
+  pointer-events:none;
+
+  animation:
+    waterFall var(--drop-time,1.1s)
+    ease-in forwards;
+}
+
+.water-drop::after{
+  content:"";
+
+  width:3px;
+  height:5px;
+
+  position:absolute;
+
+  left:2px;
+  top:2px;
+
+  border-radius:50%;
+
+  background:rgba(255,255,255,.6);
+}
+
+@keyframes waterFall{
+  0%{
+    opacity:0;
+    transform:
+      translateY(-18px)
+      rotate(45deg)
+      scale(.7);
+  }
+
+  10%{
+    opacity:1;
+  }
+
+  90%{
+    opacity:1;
+  }
+
+  100%{
+    opacity:0;
+
+    transform:
+      translateY(var(--drop-distance,260px))
+      rotate(45deg)
+      scale(1);
+  }
+}
+
+
+/* =========================================================
+   SCIENCE INFO
+========================================================= */
+
+.science-info{
+  margin-top:10px;
+  padding:13px 15px;
+
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+
+  border:1px solid #dce7df;
+  border-radius:15px;
+
+  background:var(--sage-light);
+
+  animation:infoIn .3s ease;
+}
+
+@keyframes infoIn{
+  from{
+    opacity:0;
+    transform:translateY(5px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.science-info-mark{
+  width:34px;
+  height:34px;
+
+  flex:0 0 34px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:11px;
+
+  background:var(--green);
+  color:#fff;
+
+  font-size:11px;
+}
+
+.science-info-copy > span{
+  color:var(--pink);
+  font-size:7px;
+  font-weight:900;
+}
+
+.science-info-copy h4{
+  margin:2px 0 3px;
+
+  color:var(--green);
+
+  font-size:12px;
+}
+
+.science-info-copy p{
+  margin:0;
+
+  color:#62736d;
+
+  font-size:10px;
+  line-height:1.75;
+}
+
+
+/* =========================================================
+   NOTEBOOK
+========================================================= */
+
+.notebook-section{
+  margin-top:22px;
+  padding-top:20px;
+
+  border-top:1px solid var(--line);
+}
+
+.notebook-heading{
+  margin-bottom:12px;
+
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.notebook-heading h3{
+  margin:2px 0 0;
+
+  color:var(--green);
+
+  font-size:18px;
+}
+
+.notebook-state{
+  padding:6px 9px;
+
+  border-radius:9px;
+
+  background:#f1f3ef;
+  color:var(--muted);
+
+  font-size:7px;
+  font-weight:900;
+}
+
+.notebook-state.ready{
+  background:var(--sage);
+  color:var(--green);
+}
+
+.notebook-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.notebook-card{
+  min-height:130px;
+  padding:15px;
+
+  border:1px solid var(--line);
+  border-radius:17px;
+}
+
+.observation-card{
+  background:#faf6ee;
+}
+
+.conclusion-card{
+  background:#f0f6f2;
+}
+
+.notebook-card-head{
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  color:var(--green);
+
+  font-size:10px;
+}
+
+.notebook-number{
+  width:27px;
+  height:27px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:9px;
+
+  background:rgba(255,255,255,.75);
+
+  color:var(--pink);
+
+  font-size:8px;
+  font-weight:900;
+
+  direction:ltr;
+}
+
+.notebook-card p{
+  margin:10px 0 0;
+
+  color:#63726d;
+
+  font-size:10px;
+  line-height:1.9;
+}
+
+.notebook-card.ready{
+  animation:notebookReady .45s ease;
+}
+
+@keyframes notebookReady{
+  0%{
+    opacity:.45;
+    transform:translateY(7px);
+  }
+
+  100%{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+
+/* =========================================================
+   QUESTION
+========================================================= */
+
+.question-stage{
+  margin-top:15px;
+}
+
+.question-header{
+  margin-bottom:9px;
+
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+}
+
+.question-header h3{
+  margin:2px 0 0;
+
+  color:var(--green);
+
+  font-size:17px;
+}
+
+.one-question{
+  padding:6px 9px;
+
+  border-radius:9px;
+
+  background:var(--pink-light);
+  color:var(--pink-dark);
+
+  font-size:7px;
+  font-weight:900;
+}
+
+.question-box{
+  padding:17px;
+
+  border:1px solid var(--line);
+  border-radius:17px;
+
+  background:#fff;
+}
+
+.question-box > p{
+  margin:0 0 13px;
+
+  color:var(--green);
+
+  font-size:13px;
+  font-weight:800;
+  line-height:1.7;
+}
+
+.question-choices{
+  display:grid;
+  gap:7px;
+}
+
+.choice-button{
+  width:100%;
+  min-height:45px;
+
+  padding:9px 12px;
+
+  border:1px solid #e0e4e0;
+  border-radius:12px;
+
+  background:#fafbf8;
+  color:var(--text);
+
+  text-align:right;
+
+  cursor:pointer;
+
+  font-family:inherit;
+  font-size:10px;
+  font-weight:700;
+}
+
+.choice-button.correct{
+  border-color:#a7c8b0;
+
+  background:#e9f4ec;
+  color:#285d3b;
+}
+
+.choice-button.wrong{
+  border-color:#dfb0b6;
+
+  background:#f9e9eb;
+  color:#96525a;
+}
+
+.question-feedback{
+  margin-top:9px;
+  padding:10px 12px;
+
+  border-radius:11px;
+
+  background:var(--sage-light);
+  color:var(--green);
+
+  font-size:9px;
+  font-weight:800;
+}
+
+
+/* =========================================================
+   LABELS / EXPERIMENT HELPERS
+========================================================= */
+
+.scene-label{
+  position:absolute;
+  z-index:50;
+
+  padding:6px 8px;
+
+  border:1px solid rgba(255,255,255,.85);
+  border-radius:9px;
+
+  background:rgba(255,255,255,.92);
+
+  box-shadow:
+    0 4px 12px rgba(36,61,53,.08);
+
+  color:var(--green);
+
+  font-size:8px;
+  font-weight:900;
+
+  pointer-events:none;
+}
+
+.simulation-label{
+  position:absolute;
+  z-index:45;
+
+  top:12px;
+  left:12px;
+
+  padding:6px 9px;
+
+  border-radius:9px;
+
+  background:rgba(255,255,255,.88);
+
+  color:var(--muted);
+
+  font-size:7px;
+  font-weight:900;
+}
+
+.result-panel{
+  padding:10px 12px;
+
+  border-radius:12px;
+
+  background:rgba(255,255,255,.9);
+
+  color:var(--green);
+
+  font-size:9px;
+  line-height:1.7;
+}
+
+.pulse{
+  animation:pulsePart .7s ease;
+}
+
+@keyframes pulsePart{
+  0%{
+    filter:brightness(1);
+  }
+
+  50%{
+    filter:
+      brightness(1.13)
+      drop-shadow(
+        0 0 10px rgba(198,125,134,.48)
+      );
+  }
+
+  100%{
+    filter:brightness(1);
+  }
+}
+
+
+/* =========================================================
+   CELEBRATION
+========================================================= */
+
+.celebration{
+  position:fixed;
+  inset:0;
+
+  z-index:300;
+
+  display:grid;
+  place-items:center;
+
+  padding:18px;
+}
+
+.celebration-overlay{
+  position:absolute;
+  inset:0;
+
+  background:rgba(21,47,40,.48);
+
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+
+.celebration-box{
+  width:min(430px,100%);
+  max-height:91vh;
+  overflow:auto;
+
+  position:relative;
+  z-index:2;
+
+  padding:32px 27px 25px;
+
+  border-radius:28px;
+
+  background:
+    radial-gradient(
+      circle at 0 0,
+      rgba(243,223,225,.75),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 100% 100%,
+      rgba(220,232,223,.75),
+      transparent 30%
+    ),
+    #fffdf9;
+
+  box-shadow:
+    0 30px 90px rgba(18,42,35,.27);
+
+  text-align:center;
+
+  animation:
+    celebrationEnter .5s
+    cubic-bezier(.2,.85,.2,1);
+}
+
+@keyframes celebrationEnter{
+  0%{
+    opacity:0;
+    transform:
+      translateY(22px)
+      scale(.84);
+  }
+
+  100%{
+    opacity:1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+.celebration-sparkles{
+  height:34px;
+
+  position:relative;
+
+  color:var(--gold);
+}
+
+.spark{
+  position:absolute;
+  font-style:normal;
+  animation:sparkFloat 1.3s ease-in-out infinite alternate;
+}
+
+.s1{
+  left:10%;
+  top:12px;
+}
+
+.s2{
+  left:27%;
+  top:-3px;
+}
+
+.s3{
+  left:43%;
+  top:9px;
+}
+
+.s4{
+  right:27%;
+  top:-5px;
+}
+
+.s5{
+  right:10%;
+  top:13px;
+}
+
+.s6{
+  right:44%;
+  top:-12px;
+}
+
+@keyframes sparkFloat{
+  from{
+    transform:
+      translateY(0)
+      rotate(-5deg);
+  }
+
+  to{
+    transform:
+      translateY(-6px)
+      rotate(8deg);
+  }
+}
+
+.celebration-medal{
+  width:68px;
+  height:68px;
+
+  margin:0 auto 10px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:22px;
+
+  background:var(--gold-light);
+  color:#a98537;
+
+  font-size:28px;
+
+  animation:medalPop .75s ease;
+}
+
+@keyframes medalPop{
+  0%{
+    transform:
+      scale(.3)
+      rotate(-18deg);
+  }
+
+  70%{
+    transform:
+      scale(1.13)
+      rotate(5deg);
+  }
+
+  100%{
+    transform:
+      scale(1)
+      rotate(0);
+  }
+}
+
+.celebration-kicker{
+  color:var(--pink);
+
+  font-size:9px;
+  font-weight:900;
+}
+
+.celebration-box h2{
+  margin:3px 0 5px;
+
+  color:var(--green);
+
+  font-size:24px;
+}
+
+.celebration-box > p{
+  margin:0;
+
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+.new-title-card{
+  margin:14px 0;
+  padding:12px;
+
+  border:1px solid #eee1be;
+  border-radius:15px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fbf2d8,
+      #fffaf0
+    );
+}
+
+.new-title-small{
+  display:block;
+
+  color:#9c8146;
+
+  font-size:7px;
+}
+
+.new-title-card strong{
+  display:block;
+  margin-top:3px;
+
+  color:#745d2b;
+
+  font-size:15px;
+}
+
+.rewards{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.reward{
+  min-height:72px;
+  padding:9px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+
+  border-radius:14px;
+
+  background:#f3f5f1;
+}
+
+.reward > span{
+  width:30px;
+  height:30px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:10px;
+
+  background:var(--gold-light);
+  color:#a78335;
+}
+
+.reward .reward-xp{
+  background:var(--sage);
+  color:var(--green);
+
+  font-size:8px;
+  font-weight:900;
+}
+
+.reward strong{
+  display:block;
+
+  color:var(--green);
+
+  font-size:13px;
+  direction:ltr;
+}
+
+.reward small{
+  display:block;
+
+  color:var(--muted);
+
+  font-size:7px;
+}
+
+.new-station-notice{
+  margin:12px 0 16px;
+  padding:10px 12px;
+
+  display:flex;
+  align-items:center;
+  gap:9px;
+
+  border-radius:13px;
+
+  background:var(--sage-light);
+
+  text-align:right;
+}
+
+.unlock-symbol{
+  width:35px;
+  height:35px;
+
+  flex:0 0 35px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:11px;
+
+  background:#fff;
+
+  color:var(--green);
+
+  font-size:18px;
+}
+
+.new-station-notice strong{
+  color:var(--green);
+  font-size:9px;
+}
+
+.new-station-notice p{
+  margin:2px 0 0;
+
+  color:var(--muted);
+
+  font-size:8px;
+}
+
+.celebration-button{
+  width:100%;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+  min-width:220px;
+  max-width:320px;
+
+  padding:11px 13px;
+
+  position:fixed;
+  z-index:500;
+
+  left:20px;
+  bottom:20px;
+
+  display:flex;
+  align-items:center;
+  gap:9px;
+
+  border-radius:14px;
+
+  background:var(--green);
+  color:#fff;
+
+  box-shadow:
+    0 16px 40px rgba(24,63,54,.24);
+
+  opacity:0;
+
+  transform:translateY(100px);
+
+  pointer-events:none;
+
+  transition:
+    opacity .3s ease,
+    transform .3s ease;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.toast-mark{
+  width:31px;
+  height:31px;
+
+  flex:0 0 31px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:10px;
+
+  background:rgba(255,255,255,.12);
+}
+
+.toast strong{
+  display:block;
+  font-size:10px;
+}
+
+.toast p{
+  margin:2px 0 0;
+
+  opacity:.78;
+
+  font-size:8px;
+}
+
+
+/* =========================================================
+   FINAL CHALLENGE
+========================================================= */
+
+.final-shell{
+  width:min(760px,calc(100% - 30px));
+
+  margin:50px auto 70px;
+  padding:38px;
+
+  position:relative;
+
+  border:1px solid var(--line);
+  border-radius:28px;
+
+  background:rgba(255,253,249,.92);
+
+  box-shadow:var(--shadow);
+
+  text-align:center;
+}
+
+.final-back{
+  position:absolute;
+  top:15px;
+  right:15px;
+}
+
+.final-medal{
+  width:72px;
+  height:72px;
+
+  margin:25px auto 10px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:23px;
+
+  background:var(--gold-light);
+  color:#aa8738;
+
+  font-size:27px;
+}
+
+.final-shell h2{
+  margin:3px 0 8px;
+
+  color:var(--green);
+
+  font-size:30px;
+}
+
+.final-intro{
+  max-width:500px;
+
+  margin:0 auto;
+
+  color:var(--muted);
+
+  font-size:11px;
+  line-height:1.9;
+}
+
+.final-challenge{
+  margin-top:25px;
+}
+
+
+/* =========================================================
+   CERTIFICATE
+========================================================= */
+
+.certificate-modal{
+  position:fixed;
+  inset:0;
+
+  z-index:600;
+
+  display:grid;
+  place-items:center;
+
+  padding:20px;
+
+  background:rgba(20,45,38,.48);
+
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+
+.certificate{
+  width:min(580px,100%);
+
+  padding:48px 30px;
+
+  position:relative;
+
+  border:7px double #e2d1a7;
+  border-radius:25px;
+
+  background:
+    radial-gradient(
+      circle at 0 0,
+      var(--pink-light),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 100% 100%,
+      var(--sage),
+      transparent 30%
+    ),
+    #fffdf9;
+
+  box-shadow:
+    0 30px 80px rgba(18,42,35,.28);
+
+  text-align:center;
+}
+
+.certificate-decoration{
+  color:var(--gold);
+  font-size:30px;
+}
+
+.certificate-label{
+  display:block;
+
+  margin-top:5px;
+
+  color:var(--pink);
+
+  font-size:9px;
+  font-weight:900;
+}
+
+.certificate h2{
+  margin:6px 0;
+
+  color:var(--green);
+
+  font-size:30px;
+}
+
+.certificate p{
+  max-width:450px;
+
+  margin:12px auto;
+
+  color:var(--muted);
+
+  font-size:11px;
+  line-height:1.9;
+}
+
+.certificate-divider{
+  width:85px;
+  height:2px;
+
+  margin:20px auto;
+
+  background:#ddc895;
+}
+
+.certificate > strong{
+  display:block;
+
+  color:var(--green);
+
+  font-size:15px;
+}
+
+.certificate > span:not(.certificate-label){
+  display:block;
+
+  margin:4px 0 20px;
+
+  color:var(--pink-dark);
+
+  font-size:10px;
+}
+
+
+/* =========================================================
+   TABLET — iPad
+========================================================= */
+
+@media(max-width:1000px){
+
+  .welcome-shell{
+    padding:50px 40px;
+  }
+
+  .lesson-grid{
+    grid-template-columns:215px 1fr;
+  }
+
+  .mission-panel{
+    padding:15px;
+  }
+
+  .titles-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .experiment-area{
+    min-height:540px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:760px){
+
+  .app-header{
+    width:calc(100% - 18px);
+    min-height:62px;
+
+    margin-top:9px;
+    padding:8px;
+  }
+
+  .brand-text small{
+    display:none;
+  }
+
+  .mini-stat{
+    padding:5px 8px;
+  }
+
+  .mini-stat small{
+    display:none;
+  }
+
+  .welcome-shell{
+    width:calc(100% - 18px);
+
+    min-height:auto;
+
+    margin-top:12px;
+    padding:38px 22px;
+
+    grid-template-columns:1fr;
+
+    text-align:center;
+  }
+
+  .welcome-intro{
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .welcome-features{
+    justify-content:center;
+  }
+
+  .welcome-art{
+    min-height:360px;
+  }
+
+  .map-shell{
+    width:calc(100% - 18px);
+    margin-top:35px;
+  }
+
+  .map-heading{
+    align-items:flex-start;
+  }
+
+  .map-progress-ring{
+    width:72px;
+    height:72px;
+    flex-basis:72px;
+    border-radius:22px;
+  }
+
+  .station-card{
+    grid-template-columns:55px 1fr;
+  }
+
+  .station-number{
+    width:51px;
+    height:51px;
+    border-radius:15px;
+  }
+
+  .station-state{
+    grid-column:1 / -1;
+    width:100%;
+  }
+
+  .titles-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .lesson-shell{
+    width:calc(100% - 16px);
+  }
+
+  .lesson-heading{
+    grid-template-columns:auto 1fr;
+  }
+
+  .lesson-heading-center{
+    display:none;
+  }
+
+  .lesson-status{
+    justify-self:end;
+  }
+
+  .lesson-grid{
+    grid-template-columns:1fr;
+  }
+
+  .mission-panel{
+    position:relative;
+    top:auto;
+  }
+
+  .discoveries-list{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .lab-panel{
+    padding:13px;
+  }
+
+  .experiment-area{
+    min-height:510px;
+  }
+
+  .notebook-grid{
+    grid-template-columns:1fr;
+  }
+
+  .final-shell{
+    padding:35px 18px;
+  }
+
+  .toast{
+    left:9px;
+    right:9px;
+    bottom:9px;
+
+    max-width:none;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media(max-width:430px){
+
+  .brand-text strong{
+    font-size:12px;
+  }
+
+  .mini-stat{
+    min-height:39px;
+  }
+
+  .icon-button{
+    width:39px;
+    height:39px;
+  }
+
+  .main-title{
+    font-size:49px;
+  }
+
+  .map-heading h2{
+    font-size:27px;
+  }
+
+  .map-progress-ring{
+    width:65px;
+    height:65px;
+    flex-basis:65px;
+  }
+
+  .map-progress-ring strong{
+    font-size:16px;
+  }
+
+  .titles-panel{
+    padding:18px 13px;
+  }
+
+  .discoveries-list{
+    grid-template-columns:1fr;
+  }
+
+  .lab-top{
+    align-items:flex-start;
+  }
+
+  .experiment-area{
+    min-height:480px;
+  }
+
+  .celebration-box{
+    padding:27px 18px 21px;
+  }
+}
+/* ======================================================
+   شاشة الدخول النهائية — بروح مختبر الصف الثامن
+====================================================== */
+
+#welcomeView{
+  min-height:calc(100vh - 90px);
+  padding:48px 18px 80px;
+
+  background:
+    radial-gradient(
+      circle at 8% 82%,
+      rgba(205,235,244,.62),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 88% 15%,
+      rgba(231,218,250,.62),
+      transparent 31%
+    ),
+    linear-gradient(
+      145deg,
+      #faf8fc,
+      #f8f7fb
+    );
+}
+
+#welcomeView.active{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+}
+
+.welcome-lab-card{
+  width:min(880px,100%);
+  min-height:720px;
+
+  padding:58px 70px 52px;
+
+  position:relative;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  border:1px solid rgba(255,255,255,.9);
+  border-radius:42px;
+
+  background:rgba(255,255,255,.91);
+
+  box-shadow:
+    0 24px 70px rgba(54,45,85,.10);
+
+  text-align:center;
+}
+
+.welcome-sound{
+  width:48px;
+  height:48px;
+
+  position:absolute;
+  top:25px;
+  left:25px;
+
+  display:grid;
+  place-items:center;
+
+  border:0;
+  border-radius:50%;
+
+  background:#f3effc;
+  color:#6f5a96;
+
+  font-family:inherit;
+  font-size:16px;
+  font-weight:900;
+
+  cursor:pointer;
+}
+
+.welcome-lab-badge{
+  min-height:44px;
+  padding:9px 18px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+
+  border-radius:22px;
+
+  background:#eee8fb;
+  color:#665091;
+
+  font-size:13px;
+  font-weight:900;
+}
+
+.welcome-lab-badge span{
+  color:#477e68;
+}
+
+.welcome-science-icon{
+  width:82px;
+  height:82px;
+
+  margin:28px auto 25px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:23px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #285b4d,
+      #173f36
+    );
+
+  box-shadow:
+    inset 0 0 0 3px rgba(255,255,255,.15),
+    0 10px 25px rgba(24,63,54,.17);
+}
+
+.life-icon{
+  width:46px;
+  height:53px;
+  position:relative;
+}
+
+.life-stem{
+  width:5px;
+  height:42px;
+
+  position:absolute;
+  bottom:2px;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  border-radius:8px;
+
+  background:#fff;
+}
+
+.life-leaf{
+  width:26px;
+  height:16px;
+
+  position:absolute;
+
+  border-radius:100% 0 100% 0;
+
+  background:#f1b7bd;
+}
+
+.life-leaf.leaf-one{
+  left:0;
+  top:11px;
+  transform:rotate(17deg);
+}
+
+.life-leaf.leaf-two{
+  right:0;
+  top:24px;
+  transform:scaleX(-1) rotate(17deg);
+}
+
+.welcome-unit{
+  margin:0 0 14px;
+
+  color:#8773b7;
+
+  font-size:13px;
+  font-weight:800;
+}
+
+.welcome-main-title{
+  margin:0;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  line-height:1.08;
+}
+
+.welcome-main-title span{
+  color:#263b35;
+
+  font-size:48px;
+  font-weight:900;
+}
+
+.welcome-main-title strong{
+  margin-top:4px;
+
+  color:#c77986;
+
+  font-size:62px;
+  font-weight:900;
+}
+
+.welcome-description{
+  max-width:600px;
+
+  margin:22px auto 20px;
+
+  color:#737b78;
+
+  font-size:14px;
+  line-height:2;
+}
+
+.welcome-pills{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:8px;
+
+  margin-bottom:30px;
+}
+
+.welcome-pills span{
+  min-height:33px;
+  padding:7px 13px;
+
+  display:flex;
+  align-items:center;
+
+  border:1px solid #ebe8ef;
+  border-radius:17px;
+
+  background:#f8f6fb;
+  color:#625d6c;
+
+  font-size:10px;
+  font-weight:800;
+}
+
+.welcome-name-area{
+  width:min(540px,100%);
+}
+
+.welcome-name-area label{
+  display:block;
+
+  margin-bottom:11px;
+
+  color:#333b38;
+
+  font-size:13px;
+  font-weight:900;
+}
+
+.welcome-name-area input{
+  width:100%;
+  height:61px;
+
+  padding:0 20px;
+
+  border:2px solid #e4dff0;
+  border-radius:18px;
+
+  outline:none;
+
+  background:#fff;
+  color:#263b35;
+
+  font-family:inherit;
+  font-size:16px;
+  font-weight:700;
+
+  text-align:center;
+
+  transition:.2s ease;
+}
+
+.welcome-name-area input:focus{
+  border-color:#b9a5e5;
+
+  box-shadow:
+    0 0 0 5px rgba(185,165,229,.12);
+}
+
+.welcome-name-area input::placeholder{
+  color:#aaa5ae;
+  font-weight:500;
+}
+
+.name-hint{
+  min-height:17px;
+
+  margin:6px 0 0;
+
+  color:#c06d78;
+
+  font-size:9px;
+  font-weight:700;
+}
+
+.enter-lab-button{
+  min-width:205px;
+  min-height:57px;
+
+  margin-top:22px;
+  padding:12px 24px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:13px;
+
+  border:0;
+  border-radius:18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #285b4d,
+      #173f36
+    );
+
+  color:#fff;
+
+  box-shadow:
+    0 13px 27px rgba(24,63,54,.20);
+
+  font-family:inherit;
+  font-size:15px;
+  font-weight:900;
+
+  cursor:pointer;
+}
+
+.enter-lab-button:active{
+  transform:scale(.97);
+}
+
+.welcome-footer-note{
+  margin:24px 0 0;
+
+  color:#9b9b9b;
+
+  font-size:10px;
+}
+
+
+/* نخفي الهيدر العام في شاشة البداية فقط
+   لأن البداية المرجعية نظيفة مثل منصة الثامن */
+body:has(#welcomeView.active) .app-header{
+  display:none;
+}
+
+
+/* iPad */
+@media(max-width:900px){
+
+  #welcomeView{
+    padding-top:55px;
+  }
+
+  .welcome-lab-card{
+    width:min(850px,94%);
+    min-height:690px;
+    padding:50px 50px 45px;
+  }
+
+}
+
+
+/* الهاتف */
+@media(max-width:600px){
+
+  #welcomeView{
+    padding:18px 10px 40px;
+  }
+
+  .welcome-lab-card{
+    min-height:calc(100vh - 36px);
+
+    padding:
+      55px 20px
+      35px;
+
+    border-radius:30px;
+  }
+
+  .welcome-sound{
+    width:42px;
+    height:42px;
+
+    top:18px;
+    left:18px;
+  }
+
+  .welcome-science-icon{
+    width:72px;
+    height:72px;
+
+    margin-top:20px;
+  }
+
+  .welcome-main-title span{
+    font-size:38px;
+  }
+
+  .welcome-main-title strong{
+    font-size:50px;
+  }
+
+  .welcome-description{
+    font-size:12px;
+  }
+
+  .welcome-pills{
+    margin-bottom:24px;
+  }
+
+}
+/* ===== أيقونة التوليب ===== */
+
+.tulip-icon{
+  width:60px;
+  height:65px;
+  position:relative;
+}
+
+.tulip-flower{
+  position:absolute;
+  top:3px;
+  left:14px;
+
+  width:34px;
+  height:31px;
+
+  background:linear-gradient(
+    145deg,
+    #f3a8b5,
+    #d97888
+  );
+
+  border-radius:8px 8px 18px 18px;
+
+  z-index:3;
+
+  clip-path:polygon(
+    0 10%,
+    28% 30%,
+    50% 0,
+    72% 30%,
+    100% 10%,
+    92% 70%,
+    72% 95%,
+    50% 100%,
+    28% 95%,
+    8% 70%
+  );
+}
+
+.tulip-stem{
+  position:absolute;
+  top:29px;
+  left:29px;
+
+  width:5px;
+  height:34px;
+
+  border-radius:8px;
+
+  background:#f7f5e9;
+}
+
+.tulip-leaf{
+  position:absolute;
+
+  width:23px;
+  height:12px;
+
+  background:#8fb69c;
+
+  z-index:2;
+}
+
+.tulip-leaf-left{
+  left:10px;
+  top:42px;
+
+  border-radius:100% 0 100% 0;
+  transform:rotate(20deg);
+}
+
+.tulip-leaf-right{
+  right:9px;
+  top:48px;
+
+  border-radius:0 100% 0 100%;
+  transform:rotate(-20deg);
+}
+/* =========================================================
+   الترتيب النهائي للمحطات + الدروس
+   الصقي هذا في آخر style.css
+========================================================= */
+
+/* ---------- صفحة المحطات ---------- */
+
+.map-shell{
+  width:min(920px,calc(100% - 34px));
+  margin:42px auto 90px;
+}
+
+.map-heading{
+  margin-bottom:22px;
+  padding:8px 4px;
+}
+
+.map-heading h2{
+  font-size:clamp(30px,4vw,43px);
+  margin-bottom:9px;
+}
+
+.map-heading p{
+  font-size:13px;
+  line-height:1.9;
+}
+
+.journey-progress{
+  margin-bottom:26px;
+  padding:20px 23px;
+  border-radius:22px;
+}
+
+.stations-container{
+  display:grid;
+  gap:15px;
+}
+
+.station-card{
+  min-height:126px;
+  padding:18px 20px;
+
+  grid-template-columns:72px 1fr 120px;
+  gap:18px;
+
+  border-radius:24px;
+}
+
+.station-number{
+  width:64px;
+  height:64px;
+
+  border-radius:19px;
+
+  font-size:18px;
+}
+
+.station-info small{
+  font-size:9px;
+}
+
+.station-info h3{
+  margin:3px 0 6px;
+  font-size:18px;
+}
+
+.station-info p{
+  font-size:11px;
+  line-height:1.7;
+}
+
+.station-state{
+  min-width:110px;
+  min-height:42px;
+
+  border-radius:14px;
+
+  font-size:10px;
+}
+
+
+/* المحطة المفتوحة */
+
+.station-card.current{
+  border-color:rgba(198,125,134,.45);
+
+  background:
+    radial-gradient(
+      circle at 100% 0,
+      rgba(243,223,225,.55),
+      transparent 35%
+    ),
+    #fffdf9;
+
+  box-shadow:
+    0 12px 32px rgba(198,125,134,.09);
+}
+
+.station-card.current .station-number{
+  background:var(--pink-light);
+  color:var(--pink-dark);
+}
+
+
+/* المحطة المكتملة */
+
+.station-card.completed{
+  border-color:#d6e5da;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fffdf9,
+      #f0f6f2
+    );
+}
+
+.station-card.completed::after{
+  content:"✓";
+
+  width:26px;
+  height:26px;
+
+  position:absolute;
+  top:10px;
+  left:10px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:50%;
+
+  background:var(--green);
+  color:#fff;
+
+  font-size:12px;
+  font-weight:900;
+}
+
+
+/* المحطة المقفلة */
+
+.station-card.locked{
+  opacity:.6;
+  filter:saturate(.65);
+}
+
+
+/* حركة المحطة الجديدة */
+
+.station-card.just-unlocked{
+  animation:newStationUnlock 1.15s ease;
+}
+
+@keyframes newStationUnlock{
+  0%{
+    transform:scale(.96);
+    box-shadow:none;
+  }
+
+  40%{
+    transform:scale(1.018);
+
+    box-shadow:
+      0 0 0 7px rgba(198,125,134,.10),
+      0 15px 35px rgba(198,125,134,.15);
+  }
+
+  100%{
+    transform:scale(1);
+  }
+}
+
+
+/* ---------- صفحة الدرس ---------- */
+
+.lesson-shell{
+  width:min(1080px,calc(100% - 30px));
+  margin:24px auto 75px;
+}
+
+.lesson-heading{
+  min-height:68px;
+  margin-bottom:16px;
+  padding:11px 15px;
+
+  border-radius:22px;
+}
+
+
+/*
+  أهم تغيير:
+  بدل العمود الضيق اللي كان يخنق "مهمتك"،
+  نخلي المهمة فوق والتجربة تحت.
+*/
+
+.lesson-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:16px;
+}
+
+
+/* ---------- المهمة ---------- */
+
+.mission-panel{
+  position:relative;
+  top:auto;
+
+  padding:16px 19px;
+
+  display:grid;
+  grid-template-columns:145px 1fr;
+  gap:18px;
+
+  border-radius:22px;
+}
+
+.mission-number{
+  min-height:105px;
+  height:100%;
+
+  padding:15px;
+
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+
+  border-radius:18px;
+}
+
+.mission-number strong{
+  font-size:32px;
+}
+
+.mission-copy{
+  padding:5px 0 11px;
+}
+
+.mission-copy h3{
+  font-size:20px;
+  margin:4px 0 7px;
+}
+
+.mission-copy p{
+  font-size:11px;
+  line-height:1.85;
+}
+
+
+/* الاكتشافات تصير أفقية */
+
+.discoveries-box{
+  grid-column:1 / -1;
+
+  padding-top:14px;
+}
+
+.discoveries-list{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:7px;
+}
+
+.discovery-item{
+  min-height:42px;
+  padding:8px 10px;
+
+  font-size:9px;
+}
+
+
+/* التلميح */
+
+.mission-tip{
+  grid-column:1 / -1;
+
+  margin-top:0;
+}
+
+
+/* ---------- المختبر ---------- */
+
+.lab-panel{
+  padding:22px;
+
+  border-radius:27px;
+}
+
+.lab-top{
+  padding:0 3px 7px;
+}
+
+.lab-top h3{
+  font-size:22px;
+}
+
+.experiment-tools{
+  margin:10px 0 15px;
+  min-height:auto;
+}
+
+.experiment-area{
+  min-height:600px;
+
+  border-radius:25px;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.65);
+}
+
+
+/* ---------- دفتر الملاحظات ---------- */
+
+.notebook-section{
+  margin-top:25px;
+}
+
+.notebook-grid{
+  gap:13px;
+}
+
+.notebook-card{
+  min-height:145px;
+  padding:17px;
+}
+
+.notebook-card p{
+  font-size:11px;
+  line-height:2;
+}
+
+
+/* =========================================================
+   رحلة الإخصاب — مشاهدة ثم ترتيب
+========================================================= */
+
+.fert-journey{
+  position:absolute;
+  inset:0;
+
+  display:grid;
+  grid-template-columns:1fr 310px;
+  gap:25px;
+
+  padding:35px;
+
+  background:
+    radial-gradient(
+      circle at 28% 25%,
+      rgba(255,255,255,.96),
+      transparent 35%
+    ),
+    linear-gradient(
+      #edf4f0,
+      #faf5ed
+    );
+}
+
+
+/* رسم الرحلة */
+
+.fert-animation-side{
+  min-height:500px;
+
+  position:relative;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.fert-big-stigma{
+  width:145px;
+  height:70px;
+
+  position:relative;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:60% 60% 35% 35%;
+
+  background:#9cb778;
+  color:#fff;
+
+  font-size:12px;
+  font-weight:900;
+
+  z-index:6;
+}
+
+.fert-big-style{
+  width:58px;
+  height:225px;
+
+  position:relative;
+
+  background:#a9be7d;
+}
+
+.fert-big-ovary{
+  width:240px;
+  height:150px;
+
+  position:relative;
+
+  display:grid;
+  place-items:center;
+
+  margin-top:-2px;
+
+  border-radius:50% 50% 43% 43%;
+
+  background:#789560;
+  color:#fff;
+
+  font-size:11px;
+  font-weight:900;
+}
+
+.fert-big-ovule{
+  width:76px;
+  height:59px;
+
+  position:absolute;
+  right:35px;
+  bottom:25px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:50%;
+
+  background:#f0dfa5;
+  color:#67583b;
+
+  font-size:9px;
+  font-weight:900;
+}
+
+
+/* حبة اللقاح */
+
+.journey-pollen{
+  width:27px;
+  height:27px;
+
+  position:absolute;
+  top:-38px;
+  right:27px;
+
+  border-radius:50%;
+
+  background:#d7ad45;
+
+  opacity:0;
+  transform:scale(.4);
+
+  transition:.45s ease;
+}
+
+.journey-pollen.show{
+  opacity:1;
+  transform:scale(1);
+}
+
+
+/* أنبوب اللقاح */
+
+.journey-tube{
+  width:8px;
+  height:0;
+
+  position:absolute;
+  top:0;
+  left:25px;
+
+  border-radius:10px;
+
+  background:#e6c45b;
+
+  transition:1s ease;
+}
+
+.journey-tube.show{
+  height:220px;
+}
+
+
+/* النواة الذكرية */
+
+.journey-nucleus{
+  width:14px;
+  height:14px;
+
+  position:absolute;
+  left:22px;
+  top:5px;
+
+  border-radius:50%;
+
+  background:#6d5941;
+
+  opacity:0;
+}
+
+.journey-nucleus.travel{
+  opacity:1;
+  animation:journeyNucleus 1.3s ease forwards;
+}
+
+@keyframes journeyNucleus{
+  from{
+    top:5px;
+  }
+
+  to{
+    top:208px;
+  }
+}
+
+
+/* اللاقحة */
+
+.journey-zygote{
+  width:22px;
+  height:22px;
+
+  position:absolute;
+
+  border-radius:50%;
+
+  background:#bd744f;
+
+  opacity:0;
+  transform:scale(.2);
+
+  transition:.45s ease;
+}
+
+.journey-zygote.show{
+  opacity:1;
+  transform:scale(1);
+}
+
+
+/* ---------- ترتيب المراحل ---------- */
+
+.fert-order-side{
+  align-self:center;
+
+  padding:20px;
+
+  border:1px solid #e2e6df;
+  border-radius:22px;
+
+  background:rgba(255,255,255,.88);
+
+  box-shadow:
+    0 10px 30px rgba(35,63,54,.07);
+}
+
+.fert-order-side h4{
+  margin:0 0 5px;
+
+  color:var(--green);
+
+  font-size:16px;
+}
+
+.fert-order-side > p{
+  margin:0 0 15px;
+
+  color:var(--muted);
+
+  font-size:9px;
+  line-height:1.7;
+}
+
+.fert-order-list{
+  display:grid;
+  gap:8px;
+}
+
+.fert-order-card{
+  width:100%;
+  min-height:54px;
+
+  padding:10px 12px;
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  border:1px solid #e0e5df;
+  border-radius:14px;
+
+  background:#fafbf8;
+  color:var(--text);
+
+  font-family:inherit;
+  text-align:right;
+
+  cursor:pointer;
+}
+
+.fert-order-card .order-number{
+  width:29px;
+  height:29px;
+
+  flex:0 0 29px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:9px;
+
+  background:var(--pink-light);
+  color:var(--pink-dark);
+
+  font-size:10px;
+  font-weight:900;
+}
+
+.fert-order-card strong{
+  font-size:10px;
+  line-height:1.6;
+}
+
+
+/* البطاقة المختارة */
+
+.fert-order-card.chosen{
+  border-color:var(--green);
+
+  background:var(--sage-light);
+}
+
+.fert-order-card.chosen .order-number{
+  background:var(--green);
+  color:#fff;
+}
+
+
+/* الإجابة الصحيحة */
+
+.fert-order-side.correct{
+  border-color:#b7d1be;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fff,
+      #edf6ef
+    );
+}
+
+.fert-order-feedback{
+  min-height:35px;
+
+  margin-top:11px;
+  padding:9px 10px;
+
+  display:none;
+
+  border-radius:11px;
+
+  font-size:9px;
+  font-weight:800;
+  line-height:1.7;
+}
+
+.fert-order-feedback.show{
+  display:block;
+}
+
+.fert-order-feedback.success{
+  background:#e8f4eb;
+  color:#2c6842;
+}
+
+.fert-order-feedback.retry{
+  background:#f9e9eb;
+  color:#95525b;
+}
+
+.fert-order-actions{
+  margin-top:11px;
+
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+}
+
+.fert-order-actions button{
+  min-height:42px;
+
+  border:0;
+  border-radius:12px;
+
+  font-family:inherit;
+  font-size:9px;
+  font-weight:900;
+
+  cursor:pointer;
+}
+
+.check-fert-order{
+  background:var(--green);
+  color:#fff;
+}
+
+.reset-fert-order{
+  background:#f1f2ee;
+  color:var(--green);
+}
+
+
+/* رسالة "شاهدي الرحلة أولًا" */
+
+.fert-watch-note{
+  margin-bottom:12px;
+  padding:9px 10px;
+
+  border-radius:11px;
+
+  background:#f8f3e7;
+  color:#817153;
+
+  font-size:9px;
+  line-height:1.7;
+}
+
+
+/* =========================================================
+   احتفال فتح المحطة عند الرجوع للخريطة
+========================================================= */
+
+.map-unlock-toast{
+  width:min(440px,calc(100% - 30px));
+
+  position:fixed;
+  z-index:250;
+
+  left:50%;
+  top:105px;
+
+  transform:
+    translateX(-50%)
+    translateY(-25px);
+
+  padding:14px 17px;
+
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  border:1px solid #e5d8b8;
+  border-radius:18px;
+
+  background:#fffdf7;
+
+  box-shadow:
+    0 18px 45px rgba(45,62,54,.16);
+
+  opacity:0;
+  pointer-events:none;
+
+  transition:.4s ease;
+}
+
+.map-unlock-toast.show{
+  opacity:1;
+
+  transform:
+    translateX(-50%)
+    translateY(0);
+}
+
+.map-unlock-icon{
+  width:43px;
+  height:43px;
+
+  flex:0 0 43px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:14px;
+
+  background:var(--gold-light);
+  color:#9e7d32;
+
+  font-size:19px;
+}
+
+.map-unlock-toast strong{
+  display:block;
+
+  color:var(--green);
+
+  font-size:11px;
+}
+
+.map-unlock-toast p{
+  margin:2px 0 0;
+
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+
+/* =========================================================
+   iPad
+========================================================= */
+
+@media(max-width:900px){
+
+  .map-shell{
+    width:min(850px,calc(100% - 26px));
+  }
+
+  .lesson-shell{
+    width:calc(100% - 22px);
+  }
+
+  .mission-panel{
+    grid-template-columns:125px 1fr;
+  }
+
+  .discoveries-list{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .experiment-area{
+    min-height:590px;
+  }
+
+  .fert-journey{
+    grid-template-columns:1fr 280px;
+    gap:15px;
+    padding:25px 18px;
+  }
+}
+
+
+/* =========================================================
+   الهاتف
+========================================================= */
+
+@media(max-width:650px){
+
+  .station-card{
+    grid-template-columns:55px 1fr;
+    padding:15px;
+  }
+
+  .station-state{
+    grid-column:1 / -1;
+    width:100%;
+  }
+
+  .mission-panel{
+    grid-template-columns:1fr;
+  }
+
+  .mission-number{
+    min-height:80px;
+
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+  }
+
+  .discoveries-box,
+  .mission-tip{
+    grid-column:auto;
+  }
+
+  .discoveries-list{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .experiment-area{
+    min-height:680px;
+  }
+
+  .fert-journey{
+    overflow:auto;
+
+    grid-template-columns:1fr;
+
+    padding:22px 14px 90px;
+  }
+
+  .fert-animation-side{
+    min-height:470px;
+  }
+
+  .fert-order-side{
+    width:100%;
+  }
+
+  .notebook-grid{
+    grid-template-columns:1fr;
+  }
+}
+//* =========================================
+   FIX FLOWER — ترتيب الخيوط والمتوك
+========================================= */
+
+/* الخيوط */
+.flower-filament{
+  position:absolute !important;
+  width:6px !important;
+  height:82px !important;
+  background:#f4d99d !important;
+  border-radius:20px !important;
+  z-index:14 !important;
+  transform-origin:50% 100% !important;
+}
+
+/* 3 يسار */
+.flower-filament.f1{
+  left:145px !important;
+  top:174px !important;
+  transform:rotate(-38deg) !important;
+}
+
+.flower-filament.f2{
+  left:169px !important;
+  top:145px !important;
+  transform:rotate(-23deg) !important;
+}
+
+.flower-filament.f3{
+  left:193px !important;
+  top:132px !important;
+  transform:rotate(-10deg) !important;
+}
+
+/* 3 يمين */
+.flower-filament.f4{
+  left:231px !important;
+  top:132px !important;
+  transform:rotate(10deg) !important;
+}
+
+.flower-filament.f5{
+  left:255px !important;
+  top:145px !important;
+  transform:rotate(23deg) !important;
+}
+
+.flower-filament.f6{
+  left:279px !important;
+  top:174px !important;
+  transform:rotate(38deg) !important;
+}
+
+
+/* المتوك */
+.flower-anther{
+  position:absolute !important;
+  width:25px !important;
+  height:36px !important;
+  border-radius:55% !important;
+  background:#dba83e !important;
+  z-index:16 !important;
+}
+
+/* كل متك فوق خيطه */
+.flower-anther.a1{
+  left:123px !important;
+  top:150px !important;
+  transform:rotate(-38deg) !important;
+}
+
+.flower-anther.a2{
+  left:153px !important;
+  top:116px !important;
+  transform:rotate(-23deg) !important;
+}
+
+.flower-anther.a3{
+  left:184px !important;
+  top:98px !important;
+  transform:rotate(-10deg) !important;
+}
+
+.flower-anther.a4{
+  left:221px !important;
+  top:98px !important;
+  transform:rotate(10deg) !important;
+}
+
+.flower-anther.a5{
+  left:252px !important;
+  top:116px !important;
+  transform:rotate(23deg) !important;
+}
+
+.flower-anther.a6{
+  left:282px !important;
+  top:150px !important;
+  transform:rotate(38deg) !important;
+}
+
+
+/* نخلي المدقة واضحة فوق الأسدية */
+.flower-stigma{
+  z-index:30 !important;
+}
+
+.flower-style{
+  z-index:29 !important;
+}
+
+.flower-ovary{
+  z-index:28 !important;
+}
+/* =========================================
+   FLOWER FINAL FIX
+   الخيط متصل مباشرة بالمتك
+========================================= */
+
+.flower-filament{
+  position:absolute !important;
+  width:6px !important;
+  height:92px !important;
+  border-radius:10px !important;
+  background:#f3d79b !important;
+  z-index:14 !important;
+  transform-origin:50% 100% !important;
+}
+
+.flower-anther{
+  position:absolute !important;
+  width:25px !important;
+  height:36px !important;
+  border-radius:55% !important;
+  background:#dca83f !important;
+  z-index:16 !important;
+}
+
+
+/* ===== اليسار ===== */
+
+/* خيط 1 + متك 1 */
+.flower-filament.f1{
+  left:157px !important;
+  top:172px !important;
+  transform:rotate(-37deg) !important;
+}
+
+.flower-anther.a1{
+  left:94px !important;
+  top:101px !important;
+  transform:rotate(-37deg) !important;
+}
+
+
+/* خيط 2 + متك 2 */
+.flower-filament.f2{
+  left:183px !important;
+  top:151px !important;
+  transform:rotate(-23deg) !important;
+}
+
+.flower-anther.a2{
+  left:137px !important;
+  top:70px !important;
+  transform:rotate(-23deg) !important;
+}
+
+
+/* خيط 3 + متك 3 */
+.flower-filament.f3{
+  left:204px !important;
+  top:141px !important;
+  transform:rotate(-10deg) !important;
+}
+
+.flower-anther.a3{
+  left:177px !important;
+  top:52px !important;
+  transform:rotate(-10deg) !important;
+}
+
+
+/* ===== اليمين ===== */
+
+/* خيط 4 + متك 4 */
+.flower-filament.f4{
+  left:220px !important;
+  top:141px !important;
+  transform:rotate(10deg) !important;
+}
+
+.flower-anther.a4{
+  left:226px !important;
+  top:52px !important;
+  transform:rotate(10deg) !important;
+}
+
+
+/* خيط 5 + متك 5 */
+.flower-filament.f5{
+  left:241px !important;
+  top:151px !important;
+  transform:rotate(23deg) !important;
+}
+
+.flower-anther.a5{
+  left:266px !important;
+  top:70px !important;
+  transform:rotate(23deg) !important;
+}
+
+
+/* خيط 6 + متك 6 */
+.flower-filament.f6{
+  left:267px !important;
+  top:172px !important;
+  transform:rotate(37deg) !important;
+}
+
+.flower-anther.a6{
+  left:309px !important;
+  top:101px !important;
+  transform:rotate(37deg) !important;
+}
+
+
+/* المدقة في المنتصف */
+.flower-stigma{
+  z-index:30 !important;
+}
+
+.flower-style{
+  z-index:29 !important;
+}
+
+.flower-ovary{
+  z-index:28 !important;
+}
+/* =========================================
+   الأسدية — المتك متصل بالخيط
+========================================= */
+
+.stamen{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:30px;
+  height:125px;
+
+  margin-left:-15px;
+  margin-top:-105px;
+
+  transform-origin:50% 105px;
+
+  z-index:18;
+}
+
+
+/* توزيع الأسدية حول المدقة */
+.stamen-1{
+  transform:rotate(-65deg);
+}
+
+.stamen-2{
+  transform:rotate(-40deg);
+}
+
+.stamen-3{
+  transform:rotate(-18deg);
+}
+
+.stamen-4{
+  transform:rotate(18deg);
+}
+
+.stamen-5{
+  transform:rotate(40deg);
+}
+
+.stamen-6{
+  transform:rotate(65deg);
+}
+
+
+/* الخيط */
+.stamen .flower-filament{
+  position:absolute !important;
+
+  left:12px !important;
+  top:30px !important;
+
+  width:6px !important;
+  height:95px !important;
+
+  padding:0 !important;
+  margin:0 !important;
+
+  border:0 !important;
+  border-radius:10px !important;
+
+  background:#f3d89d !important;
+
+  transform:none !important;
+  transform-origin:center !important;
+
+  z-index:1 !important;
+}
+
+
+/* المتك — مثبت فوق نفس الخيط */
+.stamen .flower-anther{
+  position:absolute !important;
+
+  left:3px !important;
+  top:0 !important;
+
+  width:24px !important;
+  height:38px !important;
+
+  padding:0 !important;
+  margin:0 !important;
+
+  border:0 !important;
+  border-radius:55% !important;
+
+  background:#dca83f !important;
+
+  transform:none !important;
+  transform-origin:center !important;
+
+  z-index:2 !important;
+}
+
+
+/* المدقة فوق الأسدية */
+.flower-stigma{
+  z-index:30 !important;
+}
+
+.flower-style{
+  z-index:29 !important;
+}
+
+.flower-ovary{
+  z-index:28 !important;
+}
+/* ===== إصلاح ظهور زهرة التجربة ===== */
+
+.flower-lab-scene {
+  width: 100%;
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  overflow: visible;
+}
+
+.detailed-flower {
+  position: relative;
+  width: 360px;
+  height: 420px;
+  margin: 35px auto 10px;
+  transform: scale(1);
+  transform-origin: center;
+}
+
+/* السبلات */
+.flower-sepal {
+  position: absolute;
+  width: 75px;
+  height: 120px;
+  background: #7fae78;
+  border: 0;
+  border-radius: 70% 20% 70% 20%;
+  left: 143px;
+  top: 235px;
+  transform-origin: 50% 15%;
+  cursor: pointer;
+}
+
+.flower-sepal.fs1 {
+  transform: rotate(-50deg);
+}
+
+.flower-sepal.fs2 {
+  transform: rotate(0deg);
+}
+
+.flower-sepal.fs3 {
+  transform: rotate(50deg);
+}
+
+/* البتلات */
+.flower-petal {
+  position: absolute;
+  width: 115px;
+  height: 165px;
+  background: #ef8fa5;
+  border: 0;
+  border-radius: 60% 60% 45% 45%;
+  left: 123px;
+  top: 75px;
+  transform-origin: 50% 90%;
+  cursor: pointer;
+  box-shadow: inset 0 -10px 20px rgba(180, 80, 110, 0.12);
+}
+
+.flower-petal.fp1 {
+  transform: rotate(0deg);
+}
+
+.flower-petal.fp2 {
+  transform: rotate(60deg);
+}
+
+.flower-petal.fp3 {
+  transform: rotate(120deg);
+}
+
+.flower-petal.fp4 {
+  transform: rotate(180deg);
+}
+
+.flower-petal.fp5 {
+  transform: rotate(240deg);
+}
+
+.flower-petal.fp6 {
+  transform: rotate(300deg);
+}
+
+/* الأسدية */
+.flower-stamen {
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  left: 0;
+  top: 20px;
+  pointer-events: none;
+}
+
+.flower-filament {
+  position: absolute;
+  width: 7px;
+  height: 105px;
+  background: #f4cf77;
+  border: 0;
+  border-radius: 20px;
+  left: 176px;
+  top: 145px;
+  transform-origin: bottom center;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.flower-anther {
+  position: absolute;
+  width: 25px;
+  height: 38px;
+  background: #e8ad35;
+  border: 0;
+  border-radius: 50%;
+  left: 167px;
+  top: 120px;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+/* توزيع الأسدية */
+.fst1 {
+  transform: rotate(0deg);
+}
+
+.fst2 {
+  transform: rotate(60deg);
+}
+
+.fst3 {
+  transform: rotate(120deg);
+}
+
+.fst4 {
+  transform: rotate(180deg);
+}
+
+.fst5 {
+  transform: rotate(240deg);
+}
+
+.fst6 {
+  transform: rotate(300deg);
+}
+
+/* الميسم */
+.flower-stigma {
+  position: absolute;
+  width: 48px;
+  height: 35px;
+  background: #b85f82;
+  border: 0;
+  border-radius: 50% 50% 35% 35%;
+  left: 156px;
+  top: 105px;
+  z-index: 15;
+  cursor: pointer;
+}
+
+/* القلم */
+.flower-style-part {
+  position: absolute;
+  width: 18px;
+  height: 145px;
+  background: #8eb46e;
+  border: 0;
+  border-radius: 20px;
+  left: 171px;
+  top: 130px;
+  z-index: 13;
+  cursor: pointer;
+}
+
+/* المبيض */
+.flower-ovary {
+  position: absolute;
+  width: 95px;
+  height: 78px;
+  background: #78a968;
+  border: 0;
+  border-radius: 48% 48% 55% 55%;
+  left: 132px;
+  top: 250px;
+  z-index: 14;
+  cursor: pointer;
+}
+
+/* البويضات */
+.flower-ovule {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  background: #f5df88;
+  border-radius: 50%;
+  top: 34px;
+}
+
+.flower-ovule.fo1 {
+  left: 20px;
+}
+
+.flower-ovule.fo2 {
+  left: 40px;
+}
+
+.flower-ovule.fo3 {
+  left: 60px;
+}
+
+/* عند اختيار أي جزء */
+.flower-petal.selected,
+.flower-sepal.selected,
+.flower-filament.selected,
+.flower-anther.selected,
+.flower-stigma.selected,
+.flower-style-part.selected,
+.flower-ovary.selected,
+.flower-ovule.selected {
+  outline: 4px solid rgba(55, 120, 100, 0.45);
+  outline-offset: 4px;
+}
+
+/* اسم الجزء */
+.flower-label {
+  margin-top: 10px;
+  min-height: 40px;
+  font-size: 22px;
+  font-weight: 800;
+  text-align: center;
+  color: #244d42;
+}
+
+/* للجوال والآيباد */
+@media (max-width: 600px) {
+  .detailed-flower {
+    transform: scale(0.8);
+    margin-top: 5px;
+    margin-bottom: -55px;
+  }
+}
+/* ===== ترتيب شكل الزهرة ===== */
+
+.detailed-flower {
+  position: relative;
+  width: 380px;
+  height: 420px;
+  margin: 35px auto 20px;
+  transform-origin: center;
+}
+
+/* البتلات */
+.flower-petal {
+  width: 105px !important;
+  height: 150px !important;
+  left: 137px !important;
+  top: 75px !important;
+  border-radius: 55% 55% 45% 45% !important;
+  transform-origin: 50% 85% !important;
+  z-index: 2;
+}
+
+.flower-petal.fp1 { transform: rotate(0deg) translateY(-20px) !important; }
+.flower-petal.fp2 { transform: rotate(60deg) translateY(-20px) !important; }
+.flower-petal.fp3 { transform: rotate(120deg) translateY(-20px) !important; }
+.flower-petal.fp4 { transform: rotate(180deg) translateY(-20px) !important; }
+.flower-petal.fp5 { transform: rotate(240deg) translateY(-20px) !important; }
+.flower-petal.fp6 { transform: rotate(300deg) translateY(-20px) !important; }
+
+/* السبلات خلف الزهرة */
+.flower-sepal {
+  width: 65px !important;
+  height: 125px !important;
+  left: 157px !important;
+  top: 215px !important;
+  z-index: 1 !important;
+}
+
+.flower-sepal.fs1 {
+  transform: rotate(-55deg) !important;
+}
+
+.flower-sepal.fs2 {
+  transform: rotate(0deg) !important;
+}
+
+.flower-sepal.fs3 {
+  transform: rotate(55deg) !important;
+}
+
+/* الأسدية حول المدقة */
+.flower-stamen {
+  position: absolute !important;
+  width: 100% !important;
+  height: 100% !important;
+  left: 0 !important;
+  top: 0 !important;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.flower-filament {
+  width: 6px !important;
+  height: 82px !important;
+  left: 187px !important;
+  top: 157px !important;
+  transform-origin: 50% 75px !important;
+  z-index: 6;
+}
+
+.flower-anther {
+  width: 22px !important;
+  height: 32px !important;
+  left: 179px !important;
+  top: 137px !important;
+  z-index: 7;
+}
+
+.fst1 { transform: rotate(0deg) !important; }
+.fst2 { transform: rotate(60deg) !important; }
+.fst3 { transform: rotate(120deg) !important; }
+.fst4 { transform: rotate(180deg) !important; }
+.fst5 { transform: rotate(240deg) !important; }
+.fst6 { transform: rotate(300deg) !important; }
+
+/* المدقة في المنتصف */
+.flower-stigma {
+  width: 44px !important;
+  height: 28px !important;
+  left: 168px !important;
+  top: 105px !important;
+  z-index: 12 !important;
+}
+
+.flower-style-part {
+  width: 14px !important;
+  height: 145px !important;
+  left: 183px !important;
+  top: 125px !important;
+  z-index: 11 !important;
+}
+
+/* المبيض أسفل المدقة */
+.flower-ovary {
+  width: 82px !important;
+  height: 65px !important;
+  left: 149px !important;
+  top: 245px !important;
+  z-index: 12 !important;
+}
+
+/* البويضات داخل المبيض */
+.flower-ovule {
+  width: 11px !important;
+  height: 11px !important;
+  top: 29px !important;
+}
+
+.flower-ovule.fo1 { left: 17px !important; }
+.flower-ovule.fo2 { left: 35px !important; }
+.flower-ovule.fo3 { left: 53px !important; }
+
+/* تصغير مرتب للآيباد والجوال */
+@media (max-width: 600px) {
+  .detailed-flower {
+    transform: scale(.82) !important;
+    margin-top: 10px !important;
+    margin-bottom: -45px !important;
+  }
+}
+/* ==================================================
+   الزهرة الجديدة
+================================================== */
+
+.flower-lab-scene {
+  width: 100%;
+  min-height: 650px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.flower-help {
+  font-size: 20px;
+  color: #52645d;
+  margin: 8px 0 20px;
+}
+
+.new-flower {
+  width: 420px;
+  height: 470px;
+  position: relative;
+  margin: 0 auto;
+}
+
+
+/* =========================
+   السبلات
+========================= */
+
+.nf-sepal {
+  position: absolute;
+  width: 75px;
+  height: 150px;
+  left: 172px;
+  top: 255px;
+
+  background: #6f9f6c;
+  border: 0;
+
+  border-radius:
+    70% 20%
+    70% 20%;
+
+  transform-origin:
+    50% 15%;
+
+  z-index: 1;
+
+  cursor: pointer;
+}
+
+.ns1 {
+  transform:
+    rotate(-48deg);
+}
+
+.ns2 {
+  transform:
+    rotate(0deg);
+}
+
+.ns3 {
+  transform:
+    rotate(48deg);
+}
+
+
+/* =========================
+   البتلات
+========================= */
+
+.nf-petal {
+  position: absolute;
+
+  width: 125px;
+  height: 175px;
+
+  left: 147px;
+  top: 85px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f4a0b6,
+      #ea809e
+    );
+
+  border: 0;
+
+  border-radius:
+    60% 60%
+    48% 48%;
+
+  transform-origin:
+    50% 88%;
+
+  box-shadow:
+    inset 0 -12px 20px
+    rgba(170, 65, 100, .08);
+
+  z-index: 2;
+
+  cursor: pointer;
+}
+
+.np1 {
+  transform:
+    rotate(0deg)
+    translateY(-25px);
+}
+
+.np2 {
+  transform:
+    rotate(60deg)
+    translateY(-25px);
+}
+
+.np3 {
+  transform:
+    rotate(120deg)
+    translateY(-25px);
+}
+
+.np4 {
+  transform:
+    rotate(180deg)
+    translateY(-25px);
+}
+
+.np5 {
+  transform:
+    rotate(240deg)
+    translateY(-25px);
+}
+
+.np6 {
+  transform:
+    rotate(300deg)
+    translateY(-25px);
+}
+
+
+/* =========================
+   الأسدية
+========================= */
+
+.nf-stamen {
+  position: absolute;
+
+  width: 36px;
+  height: 135px;
+
+  left: 192px;
+  top: 145px;
+
+  transform-origin:
+    18px 125px;
+
+  z-index: 7;
+
+  pointer-events: none;
+}
+
+.nf-filament {
+  position: absolute;
+
+  width: 6px;
+  height: 95px;
+
+  left: 15px;
+  top: 30px;
+
+  padding: 0;
+
+  background: #f4cf79;
+
+  border: 0;
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  pointer-events: auto;
+}
+
+.nf-anther {
+  position: absolute;
+
+  width: 27px;
+  height: 38px;
+
+  left: 5px;
+  top: 5px;
+
+  padding: 0;
+
+  background: #e4a72e;
+
+  border: 0;
+
+  border-radius:
+    55% 45%
+    55% 45%;
+
+  cursor: pointer;
+
+  pointer-events: auto;
+}
+
+
+.stam1 {
+  transform:
+    rotate(-67deg)
+    translateY(-47px);
+}
+
+.stam2 {
+  transform:
+    rotate(-38deg)
+    translateY(-55px);
+}
+
+.stam3 {
+  transform:
+    rotate(-17deg)
+    translateY(-58px);
+}
+
+.stam4 {
+  transform:
+    rotate(17deg)
+    translateY(-58px);
+}
+
+.stam5 {
+  transform:
+    rotate(38deg)
+    translateY(-55px);
+}
+
+.stam6 {
+  transform:
+    rotate(67deg)
+    translateY(-47px);
+}
+
+
+/* =========================
+   الميسم
+========================= */
+
+.nf-stigma {
+  position: absolute;
+
+  width: 56px;
+  height: 34px;
+
+  left: 182px;
+  top: 105px;
+
+  padding: 0;
+
+  background: #ad587a;
+
+  border: 0;
+
+  border-radius:
+    55% 55%
+    40% 40%;
+
+  z-index: 12;
+
+  cursor: pointer;
+}
+
+
+/* =========================
+   القلم
+========================= */
+
+.nf-style {
+  position: absolute;
+
+  width: 15px;
+  height: 170px;
+
+  left: 202px;
+  top: 130px;
+
+  padding: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      #84ad67,
+      #a2c77e
+    );
+
+  border: 0;
+  border-radius: 12px;
+
+  z-index: 11;
+
+  cursor: pointer;
+}
+
+
+/* =========================
+   المبيض
+========================= */
+
+.nf-ovary {
+  position: absolute;
+
+  width: 100px;
+  height: 80px;
+
+  left: 160px;
+  top: 285px;
+
+  padding: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      #83b46f,
+      #65975e
+    );
+
+  border: 0;
+
+  border-radius:
+    48% 48%
+    55% 55%;
+
+  z-index: 13;
+
+  cursor: pointer;
+}
+
+
+/* =========================
+   البويضات
+========================= */
+
+.nf-ovule {
+  position: absolute;
+
+  width: 15px;
+  height: 15px;
+
+  top: 33px;
+
+  background: #f7df86;
+
+  border-radius: 50%;
+
+  opacity: 0;
+
+  transform: scale(.3);
+
+  transition:
+    opacity .3s ease,
+    transform .3s ease;
+
+  cursor: pointer;
+}
+
+.no1 {
+  left: 20px;
+}
+
+.no2 {
+  left: 42px;
+}
+
+.no3 {
+  left: 64px;
+}
+
+
+.new-flower.show-ovules
+.nf-ovule {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+/* =========================
+   تحديد الجزء
+========================= */
+
+.new-flower .selected {
+  filter:
+    brightness(1.08)
+    drop-shadow(
+      0 0 8px
+      rgba(37, 104, 84, .65)
+    );
+
   outline:
     3px solid
-    rgba(118, 87, 217, 0.28);
+    rgba(37, 104, 84, .45);
 
   outline-offset: 3px;
 }
 
 
-/* =========================================================
-   خلفية
-========================================================= */
+/* =========================
+   اسم الجزء
+========================= */
 
-.background-decoration {
-  position: fixed;
-  inset: 0;
+.flower-label {
+  margin-top: -15px;
 
-  pointer-events: none;
-  overflow: hidden;
+  min-height: 45px;
 
-  z-index: -1;
+  color: #245448;
+
+  font-size: 23px;
+
+  font-weight: 800;
 }
 
-.blob {
-  position: absolute;
 
-  border-radius: 50%;
+/* =========================
+   الآيباد والجوال
+========================= */
 
-  filter: blur(4px);
+@media (max-width: 600px) {
 
-  opacity: 0.42;
-}
+  .new-flower {
+    transform:
+      scale(.82);
 
-.blob-1 {
-  width: 320px;
-  height: 320px;
+    transform-origin:
+      top center;
 
-  right: -120px;
-  top: 80px;
-
-  background: #eadfff;
-}
-
-.blob-2 {
-  width: 270px;
-  height: 270px;
-
-  left: -100px;
-  bottom: 10%;
-
-  background: #dcf7ff;
-}
-
-.blob-3 {
-  width: 180px;
-  height: 180px;
-
-  left: 15%;
-  top: 30%;
-
-  background: #fff0f8;
-
-  opacity: 0.3;
-}
-
-.floating-symbol {
-  position: absolute;
-
-  font-size: 32px;
-
-  opacity: 0.12;
-
-  animation:
-    floatSymbol 7s ease-in-out infinite;
-}
-
-.symbol-1 {
-  top: 18%;
-  left: 8%;
-}
-
-.symbol-2 {
-  top: 58%;
-  right: 6%;
-
-  animation-delay: -2s;
-}
-
-.symbol-3 {
-  top: 78%;
-  left: 22%;
-
-  animation-delay: -4s;
-}
-
-@keyframes floatSymbol {
-  0%,
-  100% {
-    transform: translateY(0) rotate(0deg);
+    margin-bottom:
+      -75px;
   }
 
-  50% {
-    transform: translateY(-18px) rotate(8deg);
-  }
-}
-
-
-/* =========================================================
-   الشاشات
-========================================================= */
-
-.screen {
-  display: none;
-
-  min-height: 100vh;
-}
-
-.screen.active {
-  display: block;
-
-  animation:
-    screenIn 0.4s ease;
-}
-
-@keyframes screenIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
+  .flower-lab-scene {
+    min-height:
+      540px;
   }
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
-
-.hidden {
-  display: none !important;
-}
-
-
-/* =========================================================
-   شاشة البداية
-========================================================= */
-
-.welcome-screen {
-  min-height: 100vh;
-
-  padding: 50px 20px;
-
-  align-items: center;
-  justify-content: center;
-}
-
-.welcome-screen.active {
-  display: flex;
-}
-
-.welcome-card {
+/* حبوب اللقاح التي تحملها النحلة */
+.bee {
   position: relative;
-
-  width: min(720px, 100%);
-
-  padding: 48px 46px;
-
-  text-align: center;
-
-  border:
-    1px solid rgba(255, 255, 255, 0.8);
-
-  border-radius: 38px;
-
-  background:
-    rgba(255, 255, 255, 0.86);
-
-  backdrop-filter: blur(18px);
-
-  box-shadow: var(--shadow);
 }
 
-.welcome-badge {
-  display: inline-flex;
-
-  padding: 9px 15px;
-
-  border-radius: 999px;
-
-  background: var(--purple-light);
-
-  color: var(--purple-dark);
-
-  font-size: 13px;
-  font-weight: 800;
-}
-
-.welcome-atom {
-  margin: 20px 0 4px;
-
-  font-size: 70px;
-
-  animation:
-    atomFloat 3s ease-in-out infinite;
-}
-
-@keyframes atomFloat {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-7px);
-  }
-}
-
-.eyebrow,
-.section-kicker {
-  margin: 10px 0;
-
-  color: var(--purple);
-
-  font-size: 13px;
-  font-weight: 900;
-
-  letter-spacing: 0.3px;
-}
-
-.welcome-title {
-  margin: 8px 0 15px;
-
-  font-size: clamp(32px, 6vw, 54px);
-
-  line-height: 1.25;
-}
-
-.welcome-title span {
-  display: block;
-
-  background:
-    linear-gradient(
-      90deg,
-      var(--purple),
-      var(--pink)
-    );
-
-  -webkit-background-clip: text;
-  background-clip: text;
-
-  color: transparent;
-}
-
-.welcome-description {
-  max-width: 580px;
-
-  margin:
-    0 auto 22px;
-
-  color: var(--muted);
-
-  line-height: 2;
-}
-
-.feature-pills {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  gap: 9px;
-
-  margin-bottom: 28px;
-}
-
-.feature-pills span {
-  padding: 8px 12px;
-
-  border-radius: 999px;
-
-  background: #f7f4ff;
-
-  color: #625783;
-
-  font-size: 12px;
-  font-weight: 800;
-}
-
-.name-area {
-  max-width: 430px;
-
-  margin: 0 auto;
-}
-
-.name-area label {
-  display: block;
-
-  margin-bottom: 10px;
-
-  font-weight: 900;
-}
-
-.name-area input {
-  width: 100%;
-
-  padding: 16px 18px;
-
-  border:
-    2px solid #e7e0f7;
-
-  border-radius: 18px;
-
-  background: #fff;
-
-  color: var(--text);
-
-  font-size: 16px;
-
-  text-align: center;
-
-  transition: 0.2s ease;
-}
-
-.name-area input:focus {
-  border-color: var(--purple);
-
-  box-shadow:
-    0 0 0 4px
-    rgba(118, 87, 217, 0.08);
-}
-
-.input-warning {
-  min-height: 20px;
-
-  margin: 7px 0 0;
-
-  color: #c84d72;
-
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.main-button {
-  min-height: 52px;
-
-  margin-top: 18px;
-
-  padding: 13px 25px;
-
-  border: 0;
-  border-radius: 18px;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--purple),
-      #9875ec
-    );
-
-  color: white;
-
-  font-weight: 900;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 12px 26px
-    rgba(118, 87, 217, 0.23);
-
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.main-button:active {
-  transform: scale(0.97);
-}
-
-.sound-button {
+.bee-pollen {
   position: absolute;
-
-  top: 20px;
-  left: 20px;
-
-  width: 46px;
-  height: 46px;
-
-  border: 0;
+  width: 7px;
+  height: 7px;
+  background: #f2c94c;
+  border: 2px solid #d9a72e;
   border-radius: 50%;
-
-  background: #f6f3ff;
-
-  cursor: pointer;
-}
-
-.welcome-note {
-  margin:
-    20px 0 0;
-
-  color: #8b849e;
-
-  font-size: 12px;
-}
-
-
-/* =========================================================
-   Header
-========================================================= */
-
-.app-header {
-  position: sticky;
-  top: 0;
-
   z-index: 20;
-
-  min-height: 78px;
-
-  padding:
-    14px
-    clamp(16px, 4vw, 45px);
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 15px;
-
-  background:
-    rgba(255, 255, 255, 0.88);
-
-  backdrop-filter: blur(16px);
-
-  border-bottom:
-    1px solid var(--border);
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-
-  gap: 12px;
-}
-
-.brand-icon {
-  width: 45px;
-  height: 45px;
-
-  display: grid;
-  place-items: center;
-
-  border-radius: 15px;
-
-  background: var(--purple-light);
-
-  font-size: 24px;
-}
-
-.brand strong,
-.brand small {
-  display: block;
-}
-
-.brand small {
-  margin-top: 4px;
-
-  color: var(--muted);
-
-  font-size: 11px;
-}
-
-.header-actions,
-.lesson-header-stats {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-
-  gap: 8px;
-}
-
-.stat-pill {
-  min-height: 42px;
-
-  padding: 9px 13px;
-
-  display: inline-flex;
-  align-items: center;
-
-  gap: 5px;
-
-  border-radius: 999px;
-
-  background: #f6f3ff;
-
-  color: #5e4c94;
-
-  font-size: 13px;
-  font-weight: 900;
-}
-
-.icon-button {
-  width: 43px;
-  height: 43px;
-
-  border: 0;
-  border-radius: 50%;
-
-  background: #f5f3fa;
-
-  cursor: pointer;
-}
-
-.back-button {
-  min-height: 44px;
-
-  padding: 9px 14px;
-
-  display: flex;
-  align-items: center;
-
-  gap: 7px;
-
-  border:
-    1px solid var(--border);
-
-  border-radius: 14px;
-
-  background: white;
-
-  color: var(--text);
-
-  font-weight: 800;
-
-  cursor: pointer;
-}
-
-
-/* =========================================================
-   الخريطة
-========================================================= */
-
-.map-main {
-  width: min(1180px, calc(100% - 32px));
-
-  margin: 0 auto;
-
-  padding: 38px 0 80px;
-}
-
-.map-intro {
-  display: grid;
-
-  grid-template-columns:
-    minmax(0, 1.4fr)
-    minmax(280px, 0.8fr);
-
-  align-items: center;
-
-  gap: 28px;
-
-  margin-bottom: 34px;
-}
-
-.map-intro h2 {
-  margin: 6px 0 10px;
-
-  font-size:
-    clamp(25px, 4vw, 38px);
-}
-
-.map-intro p {
-  color: var(--muted);
-
-  line-height: 1.9;
-}
-
-.progress-card {
-  padding: 22px;
-
-  border-radius: 25px;
-
-  background: white;
-
-  box-shadow: var(--soft-shadow);
-}
-
-.progress-top,
-.progress-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 12px;
-}
-
-.progress-top {
-  margin-bottom: 13px;
-}
-
-.progress-bottom {
-  margin-top: 11px;
-
-  color: var(--muted);
-
-  font-size: 12px;
-}
-
-.progress-track {
-  height: 12px;
-
-  overflow: hidden;
-
-  border-radius: 999px;
-
-  background: #eeeaf5;
-}
-
-.progress-fill {
-  width: 0;
-  height: 100%;
-
-  border-radius: inherit;
-
-  background:
-    linear-gradient(
-      90deg,
-      var(--purple),
-      var(--pink)
-    );
-
-  transition:
-    width 0.6s ease;
-}
-
-
-/* =========================================================
-   بطاقات المحطات
-========================================================= */
-
-.stations-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(2, minmax(0, 1fr));
-
-  gap: 18px;
-}
-
-.station-card {
-  position: relative;
-
-  min-height: 225px;
-
-  padding: 25px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-
-  text-align: right;
-
-  border:
-    1px solid var(--border);
-
-  border-radius: 28px;
-
-  background: white;
-
-  color: var(--text);
-
-  cursor: pointer;
-
-  overflow: hidden;
-
-  box-shadow: var(--soft-shadow);
-
-  transition:
-    transform 0.22s ease,
-    box-shadow 0.22s ease,
-    border-color 0.22s ease;
-}
-
-.station-card::before {
-  content: "";
-
-  position: absolute;
-
-  width: 130px;
-  height: 130px;
-
-  left: -50px;
-  bottom: -55px;
-
-  border-radius: 50%;
-
-  background: var(--station-soft);
-}
-
-.station-card:active {
-  transform: scale(0.985);
-}
-
-@media (hover: hover) {
-  .station-card:hover {
-    transform: translateY(-5px);
-
-    box-shadow:
-      0 20px 40px
-      rgba(70, 54, 130, 0.13);
-  }
-}
-
-.station-number {
-  position: absolute;
-
-  left: 18px;
-  top: 18px;
-
-  color: #aaa5b8;
-
-  font-size: 12px;
-  font-weight: 900;
-}
-
-.station-icon {
-  width: 58px;
-  height: 58px;
-
-  display: grid;
-  place-items: center;
-
-  margin-bottom: 15px;
-
-  border-radius: 19px;
-
-  background: var(--station-soft);
-
-  font-size: 29px;
-}
-
-.station-code {
-  color: var(--station-color);
-
-  font-size: 12px;
-  font-weight: 900;
-}
-
-.station-title {
-  margin: 6px 0 8px;
-
-  font-size: 20px;
-}
-
-.station-description {
-  max-width: 90%;
-
-  color: var(--muted);
-
-  font-size: 13px;
-  line-height: 1.8;
-}
-
-.station-state {
-  margin-top: auto;
-
-  padding-top: 17px;
-
-  color: var(--station-color);
-
-  font-size: 12px;
-  font-weight: 900;
-}
-
-.station-card.completed {
-  border-color:
-    rgba(100, 196, 151, 0.35);
-}
-
-.station-card.completed::after {
-  content: "✓";
-
-  position: absolute;
-
-  left: 20px;
-  bottom: 18px;
-
-  width: 29px;
-  height: 29px;
-
-  display: grid;
-  place-items: center;
-
-  border-radius: 50%;
-
-  background: #e6f8ef;
-
-  color: #3c9b6c;
-
-  font-weight: 900;
-}
-
-.station-purple {
-  --station-color: #7657d9;
-  --station-soft: #eee8ff;
-}
-
-.station-pink {
-  --station-color: #d95c9d;
-  --station-soft: #ffedf7;
-}
-
-.station-blue {
-  --station-color: #428fc7;
-  --station-soft: #e7f5ff;
-}
-
-.station-cyan {
-  --station-color: #36a8b0;
-  --station-soft: #e4f9fa;
-}
-
-.station-orange {
-  --station-color: #d78536;
-  --station-soft: #fff2e4;
-}
-
-.station-green {
-  --station-color: #4ca77c;
-  --station-soft: #e8f8f0;
-}
-
-.station-red {
-  --station-color: #d45e65;
-  --station-soft: #fff0f1;
-}
-
-.station-indigo {
-  --station-color: #6654bd;
-  --station-soft: #efecff;
-}
-
-.station-yellow {
-  --station-color: #b8871e;
-  --station-soft: #fff7d9;
-}
-
-.station-teal {
-  --station-color: #399c91;
-  --station-soft: #e6f8f5;
-}
-
-
-/* =========================================================
-   المهمة النهائية
-========================================================= */
-
-.final-zone {
-  margin-top: 30px;
-}
-
-.final-challenge-card {
-  width: 100%;
-
-  padding: 24px 28px;
-
-  display: flex;
-  align-items: center;
-
-  gap: 20px;
-
-  border: 0;
-  border-radius: 28px;
-
-  text-align: right;
-
-  background:
-    linear-gradient(
-      135deg,
-      #33245d,
-      #7052bd
-    );
-
-  color: white;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 18px 45px
-    rgba(65, 42, 120, 0.2);
-}
-
-.final-challenge-card.locked {
-  opacity: 0.6;
-
-  cursor: not-allowed;
-}
-
-.final-lock {
-  width: 64px;
-  height: 64px;
-
-  flex: 0 0 auto;
-
-  display: grid;
-  place-items: center;
-
-  border-radius: 20px;
-
-  background:
-    rgba(255, 255, 255, 0.13);
-
-  font-size: 28px;
-}
-
-.final-challenge-content {
-  flex: 1;
-}
-
-.final-challenge-content h3 {
-  margin: 4px 0 7px;
-
-  font-size: 22px;
-}
-
-.final-challenge-content p {
-  margin: 0;
-
-  color:
-    rgba(255, 255, 255, 0.75);
-
-  line-height: 1.7;
-}
-
-.final-challenge-card .section-kicker {
-  color: #dfd2ff;
-}
-
-.final-arrow {
-  font-size: 27px;
-}
-
-
-/* =========================================================
-   منطقة الدرس
-========================================================= */
-
-.lesson-content {
-  width: min(900px, calc(100% - 30px));
-
-  margin: 0 auto;
-
-  padding: 35px 0 90px;
-}
-
-.lesson-shell {
-  animation:
-    lessonAppear 0.35s ease;
-}
-
-@keyframes lessonAppear {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.lesson-top {
-  margin-bottom: 24px;
-
-  text-align: center;
-}
-
-.lesson-number {
-  display: inline-flex;
-
-  padding: 7px 12px;
-
-  border-radius: 999px;
-
-  background: var(--purple-light);
-
-  color: var(--purple-dark);
-
-  font-size: 12px;
-  font-weight: 900;
-}
-
-.lesson-main-icon {
-  margin: 14px 0 5px;
-
-  font-size: 58px;
-}
-
-.lesson-title {
-  margin: 4px 0 9px;
-
-  font-size:
-    clamp(27px, 5vw, 40px);
-}
-
-.lesson-subtitle {
-  max-width: 650px;
-
-  margin: 0 auto;
-
-  color: var(--muted);
-
-  line-height: 1.9;
-}
-
-
-/* =========================================================
-   مراحل المهمة
-========================================================= */
-
-.mission-steps {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  gap: 8px;
-
-  margin: 20px 0 25px;
-}
-
-.mission-step {
-  padding: 8px 11px;
-
-  border-radius: 999px;
-
-  background: #f1eff5;
-
-  color: #918c9e;
-
-  font-size: 11px;
-  font-weight: 800;
-}
-
-.mission-step.active {
-  background: var(--purple);
-
-  color: white;
-}
-
-.mission-step.done {
-  background: #e5f8ef;
-
-  color: #3e9d6f;
-}
-
-
-/* =========================================================
-   صناديق المحتوى
-========================================================= */
-
-.discovery-box,
-.explain-box,
-.mission-box,
-.lab-panel,
-.reveal-card,
-.scientist-notebook {
-  margin: 18px 0;
-
-  padding:
-    clamp(19px, 4vw, 28px);
-
-  border-radius: 27px;
-
-  background: white;
-
-  border:
-    1px solid var(--border);
-
-  box-shadow: var(--soft-shadow);
-}
-
-.discovery-box {
-  background:
-    linear-gradient(
-      135deg,
-      #f7f3ff,
-      #ffffff
-    );
-}
-
-.explain-box {
-  background:
-    linear-gradient(
-      135deg,
-      #f0fbff,
-      #ffffff
-    );
-}
-
-.mission-box {
-  background:
-    linear-gradient(
-      135deg,
-      #fffdf7,
-      #ffffff
-    );
-}
-
-.box-title {
-  margin:
-    0 0 10px;
-
-  font-size: 20px;
-}
-
-.box-text {
-  margin: 0;
-
-  color: var(--muted);
-
-  line-height: 1.9;
-}
-
-.science-note {
-  margin-top: 17px;
-
-  padding: 15px 17px;
-
-  display: flex;
-  align-items: flex-start;
-
-  gap: 11px;
-
-  border-radius: 18px;
-
-  background: #f7f4ff;
-
-  color: #5f557d;
-
-  line-height: 1.8;
-}
-
-.science-note > span {
-  font-size: 22px;
-}
-
-.science-note p {
-  margin: 0;
-}
-
-
-/* =========================================================
-   الأزرار
-========================================================= */
-
-.action-row {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  gap: 10px;
-
-  margin-top: 18px;
-}
-
-.lab-button {
-  min-height: 46px;
-
-  padding: 11px 17px;
-
-  border:
-    1px solid #ddd7ed;
-
-  border-radius: 15px;
-
-  background: white;
-
-  color: #554c69;
-
-  font-weight: 800;
-
-  cursor: pointer;
-
-  transition:
-    transform 0.17s ease,
-    box-shadow 0.17s ease,
-    opacity 0.17s ease;
-}
-
-.lab-button:active:not(:disabled) {
-  transform: scale(0.96);
-}
-
-.lab-button.primary {
-  border-color: transparent;
-
-  background: var(--purple);
-
-  color: white;
-}
-
-.lab-button.success {
-  border-color: transparent;
-
-  background: var(--green);
-
-  color: white;
-}
-
-.lab-button.danger {
-  border-color: transparent;
-
-  background: #e76b6b;
-
-  color: white;
-}
-
-button:disabled {
-  opacity: 0.5;
-
-  cursor: not-allowed;
-}
-
-
-/* =========================================================
-   Feedback
-========================================================= */
-
-.feedback-message {
-  margin-top: 14px;
-
-  padding: 13px 15px;
-
-  border-radius: 15px;
-
-  line-height: 1.7;
-
-  font-size: 13px;
-}
-
-.feedback-message:empty {
-  display: none;
-}
-
-.feedback-message.info {
-  background: #eef7ff;
-
-  color: #3f6f92;
-}
-
-.feedback-message.good {
-  background: #eaf9f1;
-
-  color: #357b59;
-}
-
-.feedback-message.try {
-  background: #fff1f4;
-
-  color: #a64f69;
-}
-
-
-/* =========================================================
-   التكبير
-========================================================= */
-
-.zoom-lab {
-  text-align: center;
-}
-
-.zoom-stage {
-  min-height: 235px;
-
-  display: grid;
-  place-items: center;
-
-  margin-bottom: 17px;
-
-  border-radius: 27px;
-
-  background:
-    radial-gradient(
-      circle,
-      white,
-      #f3eeff
-    );
-
-  overflow: hidden;
-}
-
-.zoom-object {
-  font-size: 88px;
-
-  transition:
-    transform 0.3s ease,
-    opacity 0.3s ease;
-}
-
-.zoom-object.changing,
-.zoom-pulse {
-  animation:
-    zoomPulse 0.38s ease;
-}
-
-@keyframes zoomPulse {
-  50% {
-    transform: scale(1.3);
-
-    opacity: 0.65;
-  }
-}
-
-.zoom-label {
-  margin: 5px 0;
-
-  font-size: 21px;
-}
-
-.zoom-description {
-  color: var(--muted);
-
-  line-height: 1.8;
-}
-
-
-/* =========================================================
-   مستكشف الجسيمات
-========================================================= */
-
-.particle-explorer {
-  min-height: 190px;
-
-  margin: 20px 0;
-
-  padding: 25px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  gap: 17px;
-
-  border-radius: 25px;
-
-  background:
-    radial-gradient(
-      circle at center,
-      #f8f5ff,
-      #edfaff
-    );
-
-  border:
-    2px dashed #ddd1ff;
-}
-
-.explore-atom {
-  width: 74px;
-  height: 74px;
-
-  border: 0;
-  border-radius: 50%;
-
-  background: white;
-
-  font-size: 35px;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 8px 22px
-    rgba(74, 58, 128, 0.12);
-
-  transition: 0.22s ease;
-}
-
-.explore-atom:active {
-  transform: scale(0.91);
-}
-
-.explore-atom.atom-selected {
-  transform: scale(1.08);
-
-  background: #f0eaff;
-
-  box-shadow:
-    0 0 0 5px
-    rgba(118, 87, 217, 0.1);
-}
-
-
-/* =========================================================
-   الذرة
-========================================================= */
-
-.atom-builder,
-.atom-inside-lab {
-  margin-top: 20px;
-}
-
-.builder-visual,
-.atom-inside-lab {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.atom-visual {
-  position: relative;
-
-  width: 290px;
-  height: 290px;
-
-  max-width: 100%;
-
-  margin: 20px auto;
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle,
-      #ffffff 0%,
-      #f5f1ff 55%,
-      #ecf9ff 100%
-    );
-}
-
-.atom-nucleus {
-  position: absolute;
-
-  left: 50%;
-  top: 50%;
-
-  width: 90px;
-  height: 90px;
-
-  transform:
-    translate(-50%, -50%);
-
-  display: grid;
-  place-items: center;
-
-  border-radius: 50%;
-
-  background:
-    linear-gradient(
-      135deg,
-      #ffb3c4,
-      #f38fa8
-    );
-
-  color: #6f2e42;
-
-  text-align: center;
-
-  font-size: 13px;
-  font-weight: 900;
-
-  z-index: 3;
-
-  box-shadow:
-    0 10px 25px
-    rgba(197, 81, 117, 0.18);
-}
-
-.orbit {
-  position: absolute;
-
-  left: 50%;
-  top: 50%;
-
-  border:
-    2px solid rgba(99, 127, 185, 0.25);
-
-  border-radius: 50%;
-
-  transform:
-    translate(-50%, -50%);
-}
-
-.orbit.one {
-  width: 165px;
-  height: 165px;
-}
-
-.orbit.two {
-  width: 255px;
-  height: 255px;
-}
-
-.electron {
-  position: absolute;
-
-  width: 27px;
-  height: 27px;
-
-  display: grid;
-  place-items: center;
-
-  border-radius: 50%;
-
-  background: #75c8ef;
-
-  color: white;
-
-  font-size: 12px;
-  font-weight: 900;
-
-  box-shadow:
-    0 4px 10px
-    rgba(50, 142, 188, 0.25);
-}
-
-.particle-button {
-  position: absolute;
-
-  min-width: 74px;
-  min-height: 74px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  border: 0;
-  border-radius: 50%;
-
-  font-weight: 900;
-
-  cursor: pointer;
-
-  z-index: 5;
-
-  box-shadow:
-    0 8px 20px
-    rgba(40, 35, 65, 0.13);
-
-  transition: 0.2s ease;
-}
-
-.particle-button:active {
-  transform: scale(0.9);
-}
-
-.particle-button span {
-  font-size: 25px;
-}
-
-.particle-button small {
-  font-size: 10px;
-}
-
-.proton-button {
-  top: 106px;
-  left: 69px;
-
-  background: #ffdce6;
-
-  color: #963a57;
-}
-
-.neutron-button {
-  top: 106px;
-  right: 69px;
-
-  background: #f0f1f4;
-
-  color: #59606d;
-}
-
-.electron-button {
-  top: 20px;
-  right: 14px;
-
-  background: #dff4ff;
-
-  color: #24749c;
-}
-
-.particle-discovered {
-  transform: scale(1.07);
-
-  box-shadow:
-    0 0 0 5px
-    rgba(118, 87, 217, 0.12),
-    0 10px 24px
-    rgba(60, 46, 110, 0.16);
-}
-
-
-/* =========================================================
-   حقائق الجسيمات
-========================================================= */
-
-.particle-fact-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, minmax(0, 1fr));
-
-  gap: 12px;
-
-  margin: 18px 0;
-}
-
-.particle-fact-card {
-  padding: 17px;
-
-  border:
-    1px solid var(--border);
-
-  border-radius: 20px;
-
-  background: white;
-
-  text-align: center;
-}
-
-.particle-fact-icon {
-  display: block;
-
-  margin-bottom: 8px;
-
-  font-size: 30px;
-}
-
-.particle-fact-card strong {
-  display: block;
-
-  margin-bottom: 5px;
-}
-
-.particle-fact-card p {
-  margin: 0;
-
-  color: var(--muted);
-
-  font-size: 12px;
-
-  line-height: 1.7;
-}
-
-
-/* =========================================================
-   عدادات بناء الذرة
-========================================================= */
-
-.builder-controls {
-  width: 100%;
-
-  display: grid;
-
-  gap: 10px;
-
-  margin-top: 18px;
-}
-
-.particle-control {
-  min-height: 62px;
-
-  padding: 11px 15px;
-
-  display: grid;
-
-  grid-template-columns:
-    1fr auto auto auto;
-
-  align-items: center;
-
-  gap: 10px;
-
-  border-radius: 18px;
-
-  background: #f8f6fc;
-}
-
-.counter-button {
-  width: 42px;
-  height: 42px;
-
-  border: 0;
-  border-radius: 13px;
-
-  background: white;
-
-  color: var(--purple);
-
-  font-size: 21px;
-  font-weight: 900;
-
-  cursor: pointer;
-}
-
-.particle-count {
-  min-width: 30px;
-
-  text-align: center;
-
-  font-weight: 900;
-}
-
-.atom-data {
-  width: 100%;
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(4, minmax(0, 1fr));
-
-  gap: 10px;
-}
-
-.data-chip {
-  padding: 13px 8px;
-
-  border-radius: 17px;
-
-  background: #f7f4ff;
-
-  text-align: center;
-}
-
-.data-chip small,
-.data-chip strong {
-  display: block;
-}
-
-.data-chip small {
-  color: var(--muted);
-
-  font-size: 10px;
-}
-
-.data-chip strong {
-  margin-top: 4px;
-
-  color: var(--purple-dark);
-
-  font-size: 20px;
-}
-
-
-/* =========================================================
-   الرموز الكيميائية
-========================================================= */
-
-.symbol-cards {
-  display: grid;
-
-  grid-template-columns:
-    repeat(4, minmax(0, 1fr));
-
-  gap: 12px;
-
-  margin: 20px 0;
-}
-
-.symbol-card {
-  min-height: 155px;
-
-  padding: 16px 10px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  gap: 6px;
-
-  border:
-    1px solid var(--border);
-
-  border-radius: 22px;
-
-  background: white;
-
-  cursor: pointer;
-
-  box-shadow: var(--soft-shadow);
-}
-
-.element-symbol {
-  font-size: 37px;
-  font-weight: 900;
-
-  color: var(--purple);
-}
-
-.element-name {
-  font-weight: 900;
-}
-
-.symbol-secret {
-  color: var(--muted);
-
-  font-size: 10px;
-}
-
-
-/* =========================================================
-   الجدول الدوري
-========================================================= */
-
-.periodic-wrapper {
-  width: 100%;
-
-  margin: 20px 0;
-
-  overflow-x: auto;
-
-  padding-bottom: 8px;
-}
-
-.periodic-grid {
-  min-width: 650px;
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(8, 1fr);
-
-  gap: 7px;
-
-  direction: ltr;
-}
-
-.element-cell,
-.periodic-space {
-  aspect-ratio: 1 / 1;
-}
-
-.element-cell {
-  position: relative;
-
-  padding: 5px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  border:
-    1px solid var(--border);
-
-  border-radius: 13px;
-
-  background: white;
-
-  cursor: pointer;
-
-  transition: 0.18s ease;
-}
-
-.element-cell .atomic-no {
-  position: absolute;
-
-  left: 6px;
-  top: 5px;
-
-  font-size: 8px;
-
-  color: var(--muted);
-}
-
-.element-cell .symbol {
-  font-size: 19px;
-  font-weight: 900;
-}
-
-.element-cell.metal {
-  background: #fff4df;
-}
-
-.element-cell.nonmetal {
-  background: #eaf8ff;
-}
-
-.element-cell.highlight {
-  transform: scale(1.05);
-
-  border-color: var(--purple);
-
-  box-shadow:
-    0 0 0 3px
-    rgba(118, 87, 217, 0.11);
-}
-
-.element-cell.target-good {
-  background: #e3f8ed;
-
-  border-color: #68bd91;
-}
-
-
-/* =========================================================
-   بطاقات بيانات العناصر
-========================================================= */
-
-.element-lab-cards {
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, minmax(0, 1fr));
-
-  gap: 13px;
-
-  margin: 20px 0;
-}
-
-.element-lab-card {
-  padding: 20px 14px;
-
-  border:
-    1px solid var(--border);
-
-  border-radius: 23px;
-
-  background: white;
-
-  text-align: center;
-
-  box-shadow: var(--soft-shadow);
-}
-
-button.element-lab-card {
-  cursor: pointer;
-}
-
-.big-element-symbol {
-  width: 64px;
-  height: 64px;
-
-  margin:
-    0 auto 10px;
-
-  display: grid;
-  place-items: center;
-
-  border-radius: 18px;
-
-  background: var(--purple-light);
-
-  color: var(--purple-dark);
-
-  font-size: 27px;
-  font-weight: 900;
-}
-
-.element-property-list {
-  margin-top: 13px;
-
-  display: grid;
-
-  gap: 7px;
-}
-
-.element-property-list span {
-  padding: 7px;
-
-  border-radius: 10px;
-
-  background: #f8f7fb;
-
-  color: var(--muted);
-
-  font-size: 11px;
-}
-
-
-/* =========================================================
-   ترتيب العناصر
-========================================================= */
-
-.order-zone {
-  min-height: 70px;
-
-  margin: 16px 0;
-
-  padding: 14px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  gap: 8px;
-
-  border:
-    2px dashed #ddd6ed;
-
-  border-radius: 18px;
-
-  color: var(--muted);
-}
-
-.order-chip {
-  padding: 9px 14px;
-
-  border-radius: 999px;
-
-  background: var(--purple-light);
-
-  color: var(--purple-dark);
-
-  font-weight: 900;
-}
-
-
-/* =========================================================
-   الرابطة / المركب
-========================================================= */
-
-.bond-lab {
-  min-height: 220px;
-
-  margin: 20px 0;
-
-  padding: 25px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  gap: 18px;
-
-  border-radius: 25px;
-
-  background:
-    radial-gradient(
-      circle,
-      #fff,
-      #f5f2ff
-    );
-}
-
-.bond-atom {
-  width: 90px;
-  height: 90px;
-
-  border: 0;
-  border-radius: 50%;
-
-  color: white;
-
-  font-size: 24px;
-  font-weight: 900;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 12px 24px
-    rgba(50, 40, 90, 0.15);
-
-  transition: 0.2s ease;
-}
-
-.bond-atom.na {
-  background: #7fb9f0;
-}
-
-.bond-atom.cl {
-  background: #7ccf8b;
-}
-
-.bond-atom.active {
-  transform: scale(1.1);
-
-  box-shadow:
-    0 0 0 6px
-    rgba(118, 87, 217, 0.1);
-}
-
-.bond-line {
-  width: 70px;
-  height: 6px;
-
-  border-radius: 999px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #7fb9f0,
-      #7ccf8b
-    );
-
-  animation:
-    bondAppear 0.4s ease;
-}
-
-@keyframes bondAppear {
-  from {
-    width: 0;
-    opacity: 0;
-  }
-
-  to {
-    width: 70px;
-    opacity: 1;
-  }
-}
-
-
-/* =========================================================
-   مصنع الجزيئات
-========================================================= */
-
-.formula-display {
-  margin: 12px 0;
-
-  color: var(--purple-dark);
-
-  font-size: 52px;
-  font-weight: 900;
-
-  text-align: center;
-}
-
-.molecule-workbench {
-  min-height: 180px;
-
-  margin: 18px 0;
-
-  padding: 22px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  gap: 8px;
-
-  border:
-    2px dashed #dcd5ed;
-
-  border-radius: 25px;
-
-  background:
-    radial-gradient(
-      circle,
-      #fff,
-      #f8f5ff
-    );
-
-  color: var(--muted);
-}
-
-.molecule-atom {
-  width: 60px;
-  height: 60px;
-
-  display: grid;
-  place-items: center;
-
-  border-radius: 50%;
-
-  font-weight: 900;
-
-  box-shadow:
-    0 7px 16px
-    rgba(60, 45, 100, 0.12);
-
-  animation:
-    atomPop 0.25s ease;
-}
-
-@keyframes atomPop {
-  from {
-    transform: scale(0.4);
-    opacity: 0;
-  }
-
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-.atom-h {
-  background: #f1f1f4;
-
-  color: #555;
-}
-
-.atom-o {
-  background: #ffb3bd;
-
-  color: #8b3341;
-}
-
-.atom-c {
-  background: #606474;
-
-  color: white;
-}
-
-.atom-ca {
-  background: #b9dfff;
-}
-
-.atom-s {
-  background: #ffe28c;
-
-  color: #775b00;
-}
-
-
-/* =========================================================
-   المخاليط
-========================================================= */
-
-.mixture-container {
-  position: relative;
-
-  min-height: 300px;
-
-  margin: 20px 0;
-
-  overflow: hidden;
-
-  border-radius:
-    28px 28px 70px 70px;
-
-  border:
-    4px solid rgba(106, 114, 145, 0.18);
-
-  border-top:
-    2px solid rgba(106, 114, 145, 0.1);
-
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(255,255,255,0.7),
-      rgba(225,238,247,0.55)
-    );
-
-  box-shadow:
-    inset 0 -25px 35px
-    rgba(99, 129, 150, 0.08);
-}
-
-.particle,
-.science-particle {
-  position: absolute;
-
-  width: 18px;
-  height: 18px;
-
-  border-radius: 50%;
-
-  transition:
-    left 0.8s ease,
-    top 0.8s ease,
-    transform 0.5s ease,
-    opacity 0.5s ease;
-}
-
-.iron-particle {
-  background: #6f7680;
-
-  box-shadow:
-    inset -3px -3px 5px
-    rgba(0,0,0,0.16);
-}
-
-.sulfur-particle {
-  background: #f0cb42;
-
-  box-shadow:
-    inset -3px -3px 5px
-    rgba(120,90,0,0.12);
-}
-
-.compound-particle {
-  width: 23px;
-  height: 23px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #56575e,
-      #9c8740
-    );
-}
-
-.magnet {
-  width: fit-content;
-
-  margin:
-    -5px auto 10px;
-
-  font-size: 48px;
-
-  transition: 0.4s ease;
-}
-
-.magnet.active {
-  transform:
-    translateX(-100px)
-    rotate(-15deg);
-}
-
-
-/* =========================================================
-   عينات المخاليط
-========================================================= */
-
-.sample-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(4, minmax(0, 1fr));
-
-  gap: 12px;
-
-  margin: 20px 0;
-}
-
-.sample-card {
-  min-height: 135px;
-
-  padding: 14px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  gap: 8px;
-
-  border:
-    1px solid var(--border);
-
-  border-radius: 20px;
-
-  background: white;
-
-  color: var(--text);
-
-  cursor: pointer;
-
-  box-shadow: var(--soft-shadow);
-}
-
-.sample-card.selected {
-  border-color: var(--purple);
-
-  background: #f6f2ff;
-}
-
-.sample-card:disabled {
-  opacity: 0.7;
-
-  background: #eef9f3;
-}
-
-.sample-icon {
-  font-size: 35px;
-}
-
-.classification-bins {
-  display: grid;
-
-  grid-template-columns:
-    repeat(2, minmax(0, 1fr));
-
-  gap: 12px;
-
-  margin: 16px 0;
-}
-
-.classification-bin {
-  min-height: 75px;
-
-  border:
-    2px dashed #d8d1e7;
-
-  border-radius: 20px;
-
-  background: #faf9fd;
-
-  color: #5d5571;
-
-  font-weight: 900;
-
-  cursor: pointer;
-}
-
-
-/* =========================================================
-   تجربة التبخر
-========================================================= */
-
-.evaporating-beaker {
-  position: relative;
-
-  width: 230px;
-  height: 240px;
-
-  margin:
-    25px auto;
-
-  overflow: visible;
-}
-
-.evaporating-beaker::before {
-  content: "";
-
-  position: absolute;
-
-  left: 25px;
-  right: 25px;
-  bottom: 15px;
-
-  height: 170px;
-
-  border:
-    5px solid rgba(88, 118, 145, 0.25);
-
-  border-top: 0;
-
-  border-radius:
-    0 0 35px 35px;
-}
-
-.water-level {
-  position: absolute;
-
-  left: 31px;
-  right: 31px;
-  bottom: 21px;
-
-  height: 125px;
-
-  border-radius:
-    0 0 29px 29px;
-
-  background:
-    linear-gradient(
-      #92ddf7,
-      #58badf
-    );
-
-  transition:
-    height 2s ease,
-    opacity 2s ease;
-}
-
-.water-level.evaporated {
-  height: 4px;
-
-  opacity: 0.2;
-}
-
-.salt-residue {
-  position: absolute;
-
-  left: 58px;
-  right: 58px;
-  bottom: 24px;
-
-  height: 0;
-
-  opacity: 0;
-
-  border-radius: 50%;
-
-  background:
-    repeating-linear-gradient(
-      45deg,
-      #e9e5d9,
-      #e9e5d9 5px,
-      #fff 5px,
-      #fff 9px
-    );
-
-  transition:
-    height 0.7s ease 1.4s,
-    opacity 0.7s ease 1.4s;
-}
-
-.salt-residue.show {
-  height: 18px;
-
-  opacity: 1;
-}
-
-.steam {
-  position: absolute;
-
-  top: 30px;
-
-  color: #9ec5d6;
-
-  font-size: 34px;
-
-  opacity: 0;
-
-  transform: translateY(20px);
-}
-
-.steam.show {
-  animation:
-    steamRise 1.3s ease-in-out
-    infinite;
-}
-
-@keyframes steamRise {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  40% {
-    opacity: 0.8;
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateY(-35px);
-  }
-}
-
-
-/* =========================================================
-   دفتر العالمة
-========================================================= */
-
-.scientist-notebook {
-  background:
-    linear-gradient(
-      135deg,
-      #fffdf3,
-      #fff8dc
-    );
-
-  border:
-    2px dashed #e7cf7e;
-}
-
-.notebook-title {
-  display: flex;
-  align-items: center;
-
-  gap: 11px;
-
-  margin-bottom: 14px;
-}
-
-.notebook-title > span {
-  font-size: 32px;
-}
-
-.notebook-title strong,
-.notebook-title small {
-  display: block;
-}
-
-.notebook-title small {
-  margin-top: 3px;
-
-  color: #8e8262;
-}
-
-.notebook-question {
-  display: flex;
-  align-items: flex-start;
-
-  gap: 10px;
-
-  line-height: 1.8;
-}
-
-.notebook-question p {
-  margin: 0;
-}
-
-.notebook-observation {
-  margin-top: 17px;
-
-  padding: 17px;
-
-  border-radius: 17px;
-
-  background:
-    rgba(255, 255, 255, 0.78);
-
-  animation:
-    notebookReveal 0.4s ease;
-}
-
-.notebook-observation strong {
-  display: block;
-
-  margin-top: 8px;
-
-  color: #594c7d;
-}
-
-.notebook-observation p {
-  line-height: 1.8;
-}
-
-@keyframes notebookReveal {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-
-/* =========================================================
-   تحديات
-========================================================= */
-
-.challenge-options {
-  display: grid;
-
-  gap: 10px;
-
-  margin-top: 17px;
-}
-
-.challenge-option {
-  min-height: 52px;
-
-  padding: 12px 16px;
-
-  border:
-    2px solid #e7e2ef;
-
-  border-radius: 16px;
-
-  background: white;
-
-  color: var(--text);
-
-  text-align: right;
-
-  font-weight: 800;
-
-  cursor: pointer;
-
-  transition: 0.18s ease;
-}
-
-.challenge-option:active {
-  transform: scale(0.985);
-}
-
-.challenge-option.correct {
-  border-color: #66bc8e;
-
-  background: #e7f8ef;
-
-  color: #317651;
-}
-
-.challenge-option.wrong {
-  border-color: #e88ca5;
-
-  background: #fff0f4;
-
-  color: #a34c65;
-
-  animation:
-    wrongShake 0.3s ease;
-}
-
-@keyframes wrongShake {
-  25% {
-    transform: translateX(5px);
-  }
-
-  50% {
-    transform: translateX(-5px);
-  }
-
-  75% {
-    transform: translateX(3px);
-  }
-}
-
-.challenge-explanation {
-  margin-top: 14px;
-
-  padding: 14px;
-
-  border-radius: 15px;
-
-  background: #eef9f4;
-
-  color: #3e755a;
-
-  line-height: 1.8;
-}
-
-
-/* =========================================================
-   Banner
-========================================================= */
-
-.mission-banner {
-  margin: 18px 0;
-
-  padding: 16px 18px;
-
-  display: flex;
-  align-items: center;
-
-  gap: 12px;
-
-  border-radius: 20px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #5c45aa,
-      #8768d8
-    );
-
-  color: white;
-}
-
-.mission-banner > span {
-  font-size: 29px;
-}
-
-.mission-banner strong,
-.mission-banner small {
-  display: block;
-}
-
-.mission-banner small {
-  margin-top: 3px;
-
-  color:
-    rgba(255,255,255,0.76);
-}
-
-
-/* =========================================================
-   إنهاء المهمة
-========================================================= */
-
-.finish-mission {
-  margin-top: 25px;
-
-  padding: 27px 20px;
-
-  border-radius: 25px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #f3efff,
-      #fff
-    );
-
-  text-align: center;
-
-  border:
-    1px solid #ddd3fa;
-}
-
-.finish-icon {
-  font-size: 52px;
-}
-
-.finish-mission h3 {
-  margin:
-    8px 0;
-}
-
-.finish-mission p {
-  color: var(--muted);
-
-  line-height: 1.8;
-}
-
-.rewards-row {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  gap: 8px;
-
-  margin: 15px 0;
-}
-
-.reward-chip {
-  padding: 8px 12px;
-
-  border-radius: 999px;
-
-  background: white;
-
-  color: #5d4a93;
-
-  font-size: 12px;
-  font-weight: 900;
-
-  border:
-    1px solid #e2daf6;
-}
-
-
-/* =========================================================
-   النهائي
-========================================================= */
-
-.final-main {
-  width: min(800px, calc(100% - 30px));
-
-  margin: 0 auto;
-
-  padding: 45px 0 90px;
-}
-
-.final-intro {
-  margin-bottom: 25px;
-
-  text-align: center;
-}
-
-.final-big-icon {
-  font-size: 65px;
-}
-
-.final-intro h1 {
-  margin: 5px 0 12px;
-
-  font-size:
-    clamp(28px, 5vw, 42px);
-}
-
-.final-intro p {
-  color: var(--muted);
-
-  line-height: 1.9;
-}
-
-.final-header-badge {
-  padding: 9px 14px;
-
-  border-radius: 999px;
-
-  background: var(--purple-light);
-
-  color: var(--purple-dark);
-
-  font-size: 12px;
-  font-weight: 900;
-}
-
-.final-question-card {
-  padding:
-    clamp(20px, 4vw, 30px);
-
-  border-radius: 28px;
-
-  background: white;
-
-  box-shadow: var(--shadow);
-}
-
-.final-question-number {
-  color: var(--purple);
-
-  font-size: 12px;
-  font-weight: 900;
-}
-
-
-/* =========================================================
-   التخرج والشهادة
-========================================================= */
-
-.graduation-main {
-  width: min(780px, calc(100% - 30px));
-
-  margin: 0 auto;
-
-  padding: 55px 0;
-}
-
-.graduation-card {
-  padding:
-    clamp(25px, 5vw, 48px);
-
-  border-radius: 36px;
-
-  background:
-    rgba(255,255,255,0.9);
-
-  text-align: center;
-
-  box-shadow: var(--shadow);
-}
-
-.graduation-sparkles {
-  color: #d4a52d;
-
-  font-size: 23px;
-}
-
-.graduation-icon {
-  margin: 8px 0;
-
-  font-size: 68px;
-}
-
-.graduation-card h1 {
-  margin: 7px 0 12px;
-
-  font-size:
-    clamp(29px, 5vw, 44px);
-}
-
-.graduation-card h1 span {
-  color: var(--purple);
-}
-
-.graduation-message {
-  color: var(--muted);
-
-  line-height: 1.9;
-}
-
-.certificate {
-  position: relative;
-
-  margin: 28px 0;
-
-  padding:
-    clamp(25px, 5vw, 42px);
-
-  border:
-    6px double #d6bd69;
-
-  border-radius: 20px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #fffef9,
-      #fff9e7
-    );
-}
-
-.certificate-top {
-  font-size: 26px;
-}
-
-.certificate-small {
-  color: #9a803d;
-
-  font-weight: 900;
-}
-
-.certificate h2 {
-  color: #56437f;
-}
-
-.certificate-name {
-  display: block;
-
-  margin: 15px 0;
-
-  color: var(--purple);
-
-  font-size:
-    clamp(28px, 5vw, 42px);
-}
-
-.certificate-stats {
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, 1fr);
-
-  gap: 10px;
-
-  margin-top: 25px;
-}
-
-.certificate-stats div {
-  padding: 12px;
-
-  border-radius: 15px;
-
-  background:
-    rgba(255,255,255,0.75);
-}
-
-.certificate-stats span,
-.certificate-stats strong,
-.certificate-stats small {
-  display: block;
-}
-
-.certificate-stats span {
-  font-size: 23px;
-}
-
-.certificate-stats strong {
-  margin: 4px 0;
-
-  font-size: 20px;
-}
-
-.certificate-stats small {
-  color: var(--muted);
-}
-
-.certificate-footer {
-  margin-top: 22px;
-
-  color: #8e7440;
-
-  font-size: 12px;
-}
-
-
-/* =========================================================
-   Modal
-========================================================= */
-
-.modal {
-  position: fixed;
-  inset: 0;
-
-  z-index: 100;
-
-  padding: 20px;
-
-  display: grid;
-  place-items: center;
-
-  background:
-    rgba(37, 28, 62, 0.52);
-
-  backdrop-filter: blur(7px);
-}
-
-.modal-card {
-  width: min(480px, 100%);
-
-  padding: 35px 28px;
-
-  border-radius: 30px;
-
-  background: white;
-
-  text-align: center;
-
-  box-shadow:
-    0 25px 80px
-    rgba(20, 13, 45, 0.28);
-
-  animation:
-    modalPop 0.35s ease;
-}
-
-@keyframes modalPop {
-  from {
-    opacity: 0;
-
-    transform:
-      scale(0.88)
-      translateY(10px);
-  }
-
-  to {
-    opacity: 1;
-
-    transform:
-      scale(1)
-      translateY(0);
-  }
-}
-
-.modal-sparkles {
-  color: #e2b53d;
-}
-
-.earned-badge-icon {
-  margin: 8px 0;
-
-  font-size: 67px;
-}
-
-.modal-card h2 {
-  margin: 5px 0 8px;
-}
-
-.modal-card p {
-  color: var(--muted);
-
-  line-height: 1.8;
-}
-
-
-/* =========================================================
-   Toast
-========================================================= */
-
-.unlock-toast {
-  position: fixed;
-
-  left: 20px;
-  bottom: 20px;
-
-  z-index: 90;
-
-  max-width: min(360px, calc(100% - 40px));
-
-  padding: 14px 17px;
-
-  display: flex;
-  align-items: center;
-
-  gap: 12px;
-
-  border-radius: 18px;
-
-  background: #322653;
-
-  color: white;
-
-  box-shadow:
-    0 15px 40px
-    rgba(31, 21, 57, 0.28);
-
-  animation:
-    toastIn 0.35s ease;
-}
-
-.unlock-toast-icon {
-  font-size: 26px;
-}
-
-.unlock-toast strong,
-.unlock-toast p {
-  margin: 0;
-}
-
-.unlock-toast p {
-  margin-top: 3px;
-
-  color:
-    rgba(255,255,255,0.72);
-
-  font-size: 11px;
-}
-
-@keyframes toastIn {
-  from {
-    opacity: 0;
-
-    transform:
-      translateY(15px);
-  }
-
-  to {
-    opacity: 1;
-
-    transform:
-      translateY(0);
-  }
-}
-
-
-/* =========================================================
-   Confetti
-========================================================= */
-
-.celebration-layer {
-  position: fixed;
-  inset: 0;
-
-  z-index: 150;
-
   pointer-events: none;
-
-  overflow: hidden;
+  animation: pollenGlow .45s ease-in-out infinite alternate;
 }
 
-.confetti-piece {
-  position: absolute;
-
-  top: -40px;
-
-  animation:
-    confettiFall 3s ease-in forwards;
+.bee-pollen:nth-of-type(2) {
+  left: 4px;
+  top: 7px;
 }
 
-@keyframes confettiFall {
-  0% {
-    transform:
-      translateY(-30px)
-      rotate(0deg);
-
-    opacity: 1;
-  }
-
-  100% {
-    transform:
-      translateY(110vh)
-      rotate(600deg);
-
-    opacity: 0;
-  }
+.bee-pollen:nth-of-type(3) {
+  left: 13px;
+  top: 2px;
 }
 
+.bee-pollen:nth-of-type(4) {
+  left: 22px;
+  top: 8px;
+}
 
-/* =========================================================
-   عناصر مساعدة للمختبرات الجديدة
-========================================================= */
+.bee-pollen:nth-of-type(5) {
+  left: 9px;
+  top: 17px;
+}
 
-.experiment-stage {
+.bee-pollen:nth-of-type(6) {
+  left: 19px;
+  top: 20px;
+}
+
+.bee-pollen:nth-of-type(7) {
+  left: 29px;
+  top: 15px;
+}
+
+.bee-pollen:nth-of-type(8) {
+  left: 2px;
+  top: 22px;
+}
+
+/* حبوب اللقاح التي تصل للزهرة الثانية */
+.flower-right {
   position: relative;
-
-  min-height: 260px;
-
-  margin: 20px 0;
-
-  padding: 20px;
-
-  border-radius: 26px;
-
-  background:
-    radial-gradient(
-      circle at center,
-      white,
-      #f5f3fb
-    );
-
-  overflow: hidden;
 }
 
-.experiment-title {
-  margin: 0 0 6px;
-
-  font-weight: 900;
+.received-pollen {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #f2c94c;
+  border: 2px solid #d9a72e;
+  border-radius: 50%;
+  z-index: 30;
 }
 
-.experiment-caption {
-  margin: 0;
-
-  color: var(--muted);
-
-  font-size: 12px;
-  line-height: 1.7;
+.received-pollen:nth-last-child(1) {
+  left: 48%;
+  top: 43%;
 }
 
-.discovery-counter {
-  width: fit-content;
-
-  margin:
-    12px auto;
-
-  padding: 8px 13px;
-
-  border-radius: 999px;
-
-  background: #f0ebff;
-
-  color: #6651a1;
-
-  font-size: 12px;
-  font-weight: 900;
+.received-pollen:nth-last-child(2) {
+  left: 53%;
+  top: 47%;
 }
 
-.lab-divider {
-  height: 1px;
-
-  margin: 25px 0;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      #ddd7e9,
-      transparent
-    );
+.received-pollen:nth-last-child(3) {
+  left: 45%;
+  top: 50%;
 }
 
-.mini-label {
-  display: inline-block;
-
-  margin-bottom: 8px;
-
-  padding: 6px 10px;
-
-  border-radius: 999px;
-
-  background: #f3efff;
-
-  color: var(--purple-dark);
-
-  font-size: 10px;
-  font-weight: 900;
+.received-pollen:nth-last-child(4) {
+  left: 51%;
+  top: 54%;
 }
 
-
-/* =========================================================
-   Responsive
-========================================================= */
-
-@media (max-width: 820px) {
-
-  .map-intro {
-    grid-template-columns: 1fr;
+@keyframes pollenGlow {
+  from {
+    transform: scale(.8);
   }
 
-  .stations-grid {
-    grid-template-columns: 1fr;
+  to {
+    transform: scale(1.25);
   }
-
-  .symbol-cards {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-  }
-
-  .sample-grid {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-  }
-
-}
-
-
-@media (max-width: 650px) {
-
-  .welcome-screen {
-    padding: 25px 14px;
-  }
-
-  .welcome-card {
-    padding:
-      38px 20px 30px;
-
-    border-radius: 29px;
-  }
-
-  .welcome-atom {
-    font-size: 58px;
-  }
-
-  .sound-button {
-    top: 13px;
-    left: 13px;
-  }
-
-  .app-header {
-    padding:
-      11px 13px;
-
-    align-items: center;
-  }
-
-  .brand strong {
-    font-size: 12px;
-  }
-
-  .brand-icon {
-    width: 39px;
-    height: 39px;
-
-    font-size: 20px;
-  }
-
-  .stat-pill {
-    min-height: 38px;
-
-    padding: 7px 9px;
-
-    font-size: 11px;
-  }
-
-  .header-actions .stat-pill:nth-child(2) {
-    display: none;
-  }
-
-  .map-main {
-    width:
-      min(100% - 24px, 1180px);
-
-    padding-top: 25px;
-  }
-
-  .station-card {
-    min-height: 205px;
-
-    padding: 21px;
-  }
-
-  .lesson-content {
-    width: calc(100% - 22px);
-
-    padding-top: 25px;
-  }
-
-  .particle-fact-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .element-lab-cards {
-    grid-template-columns: 1fr;
-  }
-
-  .atom-data {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-  }
-
-  .classification-bins {
-    grid-template-columns: 1fr;
-  }
-
-  .final-challenge-card {
-    padding: 19px;
-
-    gap: 13px;
-  }
-
-  .final-arrow {
-    display: none;
-  }
-
-  .final-lock {
-    width: 52px;
-    height: 52px;
-  }
-
-  .certificate-stats {
-    grid-template-columns: 1fr;
-  }
-
-}
-
-
-@media (max-width: 430px) {
-
-  .symbol-cards,
-  .sample-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .atom-visual {
-    width: 260px;
-    height: 260px;
-  }
-
-  .orbit.one {
-    width: 145px;
-    height: 145px;
-  }
-
-  .orbit.two {
-    width: 225px;
-    height: 225px;
-  }
-
-  .proton-button {
-    top: 93px;
-    left: 55px;
-  }
-
-  .neutron-button {
-    top: 93px;
-    right: 55px;
-  }
-
-  .electron-button {
-    top: 15px;
-    right: 6px;
-  }
-
-  .bond-atom {
-    width: 72px;
-    height: 72px;
-  }
-
-  .bond-line {
-    width: 45px;
-  }
-
-}
-
-
-/* =========================================================
-   تقليل الحركة لمن يفضل ذلك
-========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-
-    transition-duration: 0.01ms !important;
-  }
-
 }

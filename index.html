@@ -1,1085 +1,813 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f7f2e9" />
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <title>مختبر الحياة | الصف السابع</title>
 
-  <meta
-    name="theme-color"
-    content="#7657d9"
-  >
-
-  <title>
-    مختبر العناصر والمركبات | الصف الثامن
-  </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
+    href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet"
-    href="style.css"
   >
-</head>
 
+  <link rel="stylesheet" href="style.css" />
+</head>
 
 <body>
 
-  <!-- =====================================================
-       خلفية زخرفية
-  ====================================================== -->
-
-  <div
-    class="background-decoration"
-    aria-hidden="true"
-  >
-    <span class="blob blob-1"></span>
-    <span class="blob blob-2"></span>
-    <span class="blob blob-3"></span>
-
-    <span class="floating-symbol symbol-1">
-      ⚛️
-    </span>
-
-    <span class="floating-symbol symbol-2">
-      🧪
-    </span>
-
-    <span class="floating-symbol symbol-3">
-      ✨
-    </span>
-  </div>
+  <!-- خلفية زخرفية -->
+  <div class="page-decor decor-one"></div>
+  <div class="page-decor decor-two"></div>
+  <div class="page-decor decor-three"></div>
 
 
-  <!-- =====================================================
+  <!-- ========================================
+       الشريط العلوي
+  ========================================= -->
+  <header class="app-header">
+
+    <button id="brandBtn" class="brand" type="button">
+
+      <span class="brand-mark">
+        <span class="brand-leaf leaf-a"></span>
+        <span class="brand-leaf leaf-b"></span>
+      </span>
+
+      <span class="brand-text">
+        <strong>مختبر الحياة</strong>
+        <small>علوم الصف السابع</small>
+      </span>
+
+    </button>
+
+
+    <div class="header-actions">
+
+      <div class="mini-stat">
+        <span class="mini-stat-icon">★</span>
+
+        <div>
+          <small>النجوم</small>
+          <strong id="headerStars">0</strong>
+        </div>
+      </div>
+
+
+      <div class="mini-stat">
+        <span class="xp-icon">XP</span>
+
+        <div>
+          <small>الخبرة</small>
+          <strong id="headerXp">0</strong>
+        </div>
+      </div>
+
+
+      <button
+        id="soundToggle"
+        class="icon-button"
+        type="button"
+        aria-label="تشغيل أو إيقاف الصوت"
+      >
+        <span id="soundIcon">♫</span>
+      </button>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- ========================================
        1. شاشة البداية
-  ====================================================== -->
+  ========================================= -->
+  <main id="welcomeView" class="view active">
 
-  <section
-    id="welcomeScreen"
-    class="screen welcome-screen active"
-  >
+    <section class="welcome-lab-card">
 
-    <div class="welcome-card">
+      <button
+        id="welcomeSoundBtn"
+        class="welcome-sound"
+        type="button"
+        aria-label="تشغيل أو إيقاف الصوت"
+      >
+        ♫
+      </button>
 
-      <div class="welcome-badge">
-        🧪 مختبر العلوم
+
+      <div class="welcome-lab-badge">
+        <span>✦</span>
+        مختبر العلوم
       </div>
 
 
-      <div class="welcome-atom">
-        ⚛️
+      <!-- أيقونة التوليب -->
+      <div class="welcome-science-icon">
+
+        <div class="tulip-icon" aria-hidden="true">
+
+          <span class="tulip-flower"></span>
+
+          <span class="tulip-stem"></span>
+
+          <span class="tulip-leaf tulip-leaf-left"></span>
+
+          <span class="tulip-leaf tulip-leaf-right"></span>
+
+        </div>
+
       </div>
 
 
-      <p class="eyebrow">
-        الوحدة الثانية • الصف الثامن
+      <p class="welcome-unit">
+        الوحدة الأولى • الصف السابع
       </p>
 
 
-      <h1 class="welcome-title">
-        مختبر
-        <span>
-          العناصر والمركبات
-        </span>
+      <h1 class="welcome-main-title">
+        <span>مختبر</span>
+        <strong>الحياة</strong>
       </h1>
 
 
       <p class="welcome-description">
-        رحلة علمية تفاعلية من عالم الذرات
-        إلى المركبات والمخاليط.
-        استكشفي، جرّبي، فكّري،
-        وسجّلي اكتشافاتكِ بنفسكِ.
+        رحلة علمية تفاعلية نستكشف فيها النباتات وجسم الإنسان.
+        جرّبي، لاحظي، واكتشفي المعلومة بنفسك.
       </p>
 
 
-      <div class="feature-pills">
-
-        <span>
-          🔬 تجارب تفاعلية
-        </span>
-
-        <span>
-          📓 دفتر العالمة
-        </span>
-
-        <span>
-          ⭐ شارات
-        </span>
-
-        <span>
-          ⚡ XP
-        </span>
-
+      <div class="welcome-pills">
+        <span>تجارب تفاعلية</span>
+        <span>دفتر العالمة</span>
+        <span>شارات</span>
+        <span>XP</span>
       </div>
 
 
-      <div class="name-area">
+      <!-- اسم المستكشفة -->
+      <div class="welcome-name-area">
 
-        <label for="studentName">
-          👩🏻‍🔬 ما اسم العالمة؟
+        <label for="explorerName">
+          ما اسم المستكشفة؟
         </label>
 
         <input
-          id="studentName"
+          id="explorerName"
           type="text"
-          maxlength="25"
+          maxlength="20"
+          placeholder="اكتبي اسمك هنا"
           autocomplete="off"
-          placeholder="اكتبي اسمكِ هنا..."
         >
 
-        <p
-          id="nameWarning"
-          class="input-warning"
-          aria-live="polite"
-        ></p>
+        <p id="nameHint" class="name-hint"></p>
 
       </div>
 
 
+      <!-- زر الدخول الوحيد -->
       <button
-        id="enterLabBtn"
-        class="main-button"
+        id="startBtn"
+        class="enter-lab-button"
         type="button"
       >
-        <span>
-          ادخلي المختبر
-        </span>
-
-        <span>
-          🚀
-        </span>
+        <span>ادخلي المختبر</span>
+        <b>←</b>
       </button>
 
 
-      <button
-        id="welcomeSoundBtn"
-        class="sound-button"
-        type="button"
-        aria-label="تشغيل أو كتم الصوت"
-      >
-        🔊
-      </button>
-
-
-      <p class="welcome-note">
-        💜 لا تحتاجين إلى حفظ الإجابات...
-        اكتشفيها من التجارب.
+      <p class="welcome-footer-note">
+        لا تحتاجين إلى حفظ الإجابات... اكتشفيها من التجارب.
       </p>
 
-    </div>
+    </section>
 
-  </section>
-
-
-  <!-- =====================================================
-       2. خريطة المختبر
-  ====================================================== -->
-
-  <section
-    id="mapScreen"
-    class="screen"
-  >
-
-    <header class="app-header">
-
-      <div class="brand">
-
-        <div class="brand-icon">
-          ⚛️
-        </div>
-
-        <div>
-          <strong>
-            مختبر العناصر والمركبات
-          </strong>
-
-          <small>
-            رحلة العالمة
-            <span id="mapStudentName"></span>
-          </small>
-        </div>
-
-      </div>
+  </main>
 
 
-      <div class="header-actions">
 
-        <div class="stat-pill">
-          ⭐
-          <span id="starCount">
-            0
-          </span>
-        </div>
+  <!-- ========================================
+       2. خريطة المحطات
+  ========================================= -->
+  <main id="mapView" class="view">
 
-        <div class="stat-pill">
-          ⚡
-          <span id="xpCount">
-            0
-          </span>
-          XP
-        </div>
+    <section class="map-shell">
 
-        <button
-          id="globalSoundBtn"
-          class="icon-button"
-          type="button"
-          aria-label="تشغيل أو كتم الصوت"
-        >
-          🔊
-        </button>
-
-      </div>
-
-    </header>
-
-
-    <main class="map-main">
-
-      <section class="map-intro">
+      <div class="map-heading">
 
         <div>
 
-          <p class="section-kicker">
-            🗺️ خريطة الرحلة
-          </p>
+          <span class="section-kicker">
+            رحلتك العلمية
+          </span>
 
           <h2>
-            أمامكِ عشر محطات علمية
+            أمامك عشر محطات علمية
           </h2>
 
           <p>
-            كل محطة تحتوي على استكشاف وتجربة
-            واستنتاج وتحدٍّ قصير.
-            اجمعي الشارات حتى تفتحي المهمة النهائية.
+            أنجزي المحطة لفتح المحطة التي بعدها.
+            ويمكنك العودة لأي محطة مكتملة وإعادة التجربة متى شئتِ.
           </p>
 
         </div>
 
 
-        <div class="progress-card">
+        <div class="map-progress-ring">
 
-          <div class="progress-top">
+          <strong id="mapPercent">
+            0%
+          </strong>
 
-            <span>
-              تقدم الرحلة
+          <small>
+            مكتمل
+          </small>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- شريط التقدم -->
+      <section class="journey-progress">
+
+        <div class="journey-progress-top">
+
+          <span>
+            تقدمك في الرحلة
+          </span>
+
+          <strong>
+            <b id="completedStations">0</b>
+            <span>/ 10</span>
+          </strong>
+
+        </div>
+
+
+        <div class="progress-track">
+          <div
+            id="mapProgressFill"
+            class="progress-fill"
+          ></div>
+        </div>
+
+      </section>
+
+
+
+      <!-- المحطات -->
+      <section
+        id="stationsContainer"
+        class="stations-container"
+        aria-label="المحطات العلمية"
+      ></section>
+
+
+
+      <!-- الألقاب -->
+      <section class="titles-panel">
+
+        <div class="titles-heading">
+
+          <div>
+
+            <span class="section-kicker">
+              سجل الإنجاز
             </span>
 
-            <strong id="progressPercent">
-              0%
+            <h3>
+              ألقابي العلمية
+            </h3>
+
+          </div>
+
+
+          <span class="titles-count">
+            <b id="titlesCount">0</b>/10
+          </span>
+
+        </div>
+
+
+        <div
+          id="titlesGrid"
+          class="titles-grid"
+        ></div>
+
+      </section>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- ========================================
+       3. داخل المحطة
+  ========================================= -->
+  <main id="lessonView" class="view">
+
+    <section class="lesson-shell">
+
+
+      <!-- رأس المحطة -->
+      <div class="lesson-heading">
+
+        <button
+          id="backToMapBtn"
+          class="soft-button"
+          type="button"
+        >
+          <span>→</span>
+          خريطة المحطات
+        </button>
+
+
+        <div class="lesson-heading-center">
+
+          <span
+            id="lessonCode"
+            class="lesson-code"
+          >
+            1-1
+          </span>
+
+          <h2 id="lessonTitle">
+            أعضاء النبات
+          </h2>
+
+        </div>
+
+
+        <div
+          id="lessonStatus"
+          class="lesson-status"
+        >
+          قيد الاستكشاف
+        </div>
+
+      </div>
+
+
+
+      <div class="lesson-grid">
+
+
+        <!-- ====================================
+             العمود الجانبي
+        ===================================== -->
+        <aside class="mission-panel">
+
+          <div class="mission-number">
+
+            <small>
+              المحطة
+            </small>
+
+            <strong id="lessonNumber">
+              01
             </strong>
 
           </div>
 
 
-          <div class="progress-track">
+          <div class="mission-copy">
+
+            <span class="section-kicker">
+              مهمتك
+            </span>
+
+            <h3 id="missionTitle">
+              استكشفي أعضاء النبات
+            </h3>
+
+            <p id="missionText">
+              تفاعلي مع المشهد واكتشفي وظيفة كل جزء.
+            </p>
+
+          </div>
+
+
+
+          <div class="discoveries-box">
+
+            <div class="discoveries-head">
+
+              <span>
+                اكتشافات التجربة
+              </span>
+
+              <strong id="discoveriesCounter">
+                0/0
+              </strong>
+
+            </div>
 
             <div
-              id="mainProgressBar"
-              class="progress-fill"
+              id="discoveriesList"
+              class="discoveries-list"
             ></div>
 
           </div>
 
 
-          <div class="progress-bottom">
 
-            <span>
-              🔬 المحطات المكتملة
+          <div class="mission-tip">
+
+            <span class="tip-mark">
+              i
             </span>
 
-            <strong id="completedCounter">
-              0 من 10
-            </strong>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- =================================================
-           المحطات
-      ================================================== -->
-
-      <section
-        class="stations-grid"
-        aria-label="محطات الوحدة الثانية"
-      >
-
-
-        <!-- 1 -->
-
-        <button
-          class="station-card station-purple"
-          data-lesson="1"
-          type="button"
-        >
-
-          <span class="station-number">
-            01
-          </span>
-
-          <span class="station-icon">
-            🔬
-          </span>
-
-          <span class="station-code">
-            2-1
-          </span>
-
-          <strong class="station-title">
-            الذرات
-          </strong>
-
-          <span class="station-description">
-            كبّري المادة واكتشفي العالم
-            الصغير جدًا.
-          </span>
-
-          <span class="station-state">
-            ابدئي 🚀
-          </span>
-
-        </button>
-
-
-        <!-- 2 -->
-
-        <button
-          class="station-card station-pink"
-          data-lesson="2"
-          type="button"
-        >
-
-          <span class="station-number">
-            02
-          </span>
-
-          <span class="station-icon">
-            🔐
-          </span>
-
-          <span class="station-code">
-            2-2
-          </span>
-
-          <strong class="station-title">
-            الذرات والعناصر
-          </strong>
-
-          <span class="station-description">
-            افتحي خزنة الرموز الكيميائية
-            وطابقي العناصر.
-          </span>
-
-          <span class="station-state">
-            ابدئي 🚀
-          </span>
-
-        </button>
-
-
-        <!-- 3 -->
-
-        <button
-          class="station-card station-blue"
-          data-lesson="3"
-          type="button"
-        >
-
-          <span class="station-number">
-            03
-          </span>
-
-          <span class="station-icon">
-            🧩
-          </span>
-
-          <span class="station-code">
-            2-3
-          </span>
-
-          <strong class="station-title">
-            الجدول الدوري
-          </strong>
-
-          <span class="station-description">
-            ابحثي بين العناصر واكتشفي
-            المجموعات والدورات.
-          </span>
-
-          <span class="station-state">
-            ابدئي 🚀
-          </span>
-
-        </button>
-
-
-        <!-- 4 -->
-
-        <button
-          class="station-card station-cyan"
-          data-lesson="4"
-          type="button"
-        >
-
-          <span class="station-number">
-            04
-          </span>
-
-          <span class="station-icon">
-            ⚛️
-          </span>
-
-          <span class="station-code">
-            2-4
-          </span>
-
-          <strong class="station-title">
-            المزيد حول تركيب الذرة
-          </strong>
-
-          <span class="station-description">
-            ابنِي ذرة الليثيوم
-            بروتونًا وإلكترونًا في كل مرة.
-          </span>
-
-          <span class="station-state">
-            ابدئي 🚀
-          </span>
-
-        </button>
-
-
-        <!-- 5 -->
-
-        <button
-          class="station-card station-orange"
-          data-lesson="5"
-          type="button"
-        >
-
-          <span class="station-number">
-            05
-          </span>
-
-          <span class="station-icon">
-            🔥
-          </span>
-
-          <span class="station-code">
-            2-5
-          </span>
-
-          <strong class="station-title">
-            خواص المجموعة الأولى
-          </strong>
-
-          <span class="station-description">
-            قارني الليثيوم والصوديوم
-            والبوتاسيوم واكتشفي النمط.
-          </span>
-
-          <span class="station-state">
-            ابدئي 🚀
-          </span>
-
-        </button>
-
-
-        <!-- 6 -->
-
-        <button
-          class="station-card station-green"
-          data-lesson="6"
-          type="button"
-        >
-
-          <span class="station-number">
-            06
-          </span>
-
-          <span class="station-icon">
-            🧪
-          </span>
-
-          <span class="station-code">
-            2-6
-          </span>
-
-          <strong class="station-title">
-            خواص بعض المجموعات الأخرى
-          </strong>
-
-          <span class="station-description">
-            استكشفي الفلور والكلور
-            والبروم وقارني خواصها.
-          </span>
-
-          <span class="station-state">
-            ابدئي 🚀
-          </span>
-
-        </button>
-
-
-        <!-- 7 -->
-
-        <button
-          class="station-card station-red"
-          data-lesson="7"
-          type="button"
-        >
-
-          <span class="station-number">
-            07
-          </span>
-
-          <span class="station-icon">
-            🔗
-          </span>
-
-          <span class="station-code">
-            2-7
-          </span>
-
-          <strong class="station-title">
-            المركبات الكيميائية
-          </strong>
-
-          <span class="station-description">
-            اجمعي ذرات مختلفة وشاهدي
-            تكوّن مركب جديد.
-          </span>
-
-          <span class="station-state">
-            ابدئي 🚀
-          </span>
-
-        </button>
-
-
-        <!-- 8 -->
-
-        <button
-          class="station-card station-indigo"
-          data-lesson="8"
-          type="button"
-        >
-
-          <span class="station-number">
-            08
-          </span>
-
-          <span class="station-icon">
-            🧬
-          </span>
-
-          <span class="station-code">
-            2-8
-          </span>
-
-          <strong class="station-title">
-            الصيغ الكيميائية
-          </strong>
-
-          <span class="station-description">
-            ادخلي مصنع الجزيئات وابنِي
-            H₂O وCO₂ وCH₄.
-          </span>
-
-          <span class="station-state">
-            ابدئي 🚀
-          </span>
-
-        </button>
-
-
-        <!-- 9 -->
-
-        <button
-          class="station-card station-yellow"
-          data-lesson="9"
-          type="button"
-        >
-
-          <span class="station-number">
-            09
-          </span>
-
-          <span class="station-icon">
-            🧲
-          </span>
-
-          <span class="station-code">
-            2-9
-          </span>
-
-          <strong class="station-title">
-            المركبات والمخاليط
-          </strong>
-
-          <span class="station-description">
-            اخلطي الحديد والكبريت
-            واختبريهما بالمغناطيس.
-          </span>
-
-          <span class="station-state">
-            ابدئي 🚀
-          </span>
-
-        </button>
-
-
-        <!-- 10 -->
-
-        <button
-          class="station-card station-teal"
-          data-lesson="10"
-          type="button"
-        >
-
-          <span class="station-number">
-            10
-          </span>
-
-          <span class="station-icon">
-            🥣
-          </span>
-
-          <span class="station-code">
-            2-10
-          </span>
-
-          <strong class="station-title">
-            المزيد حول المخاليط
-          </strong>
-
-          <span class="station-description">
-            صنفي المواد ثم نفّذي
-            تجربة تبخر المياه المعدنية.
-          </span>
-
-          <span class="station-state">
-            ابدئي 🚀
-          </span>
-
-        </button>
-
-      </section>
-
-
-      <!-- =================================================
-           التحدي النهائي
-      ================================================== -->
-
-      <section class="final-zone">
-
-        <button
-          id="finalChallengeCard"
-          class="final-challenge-card locked"
-          type="button"
-          disabled
-        >
-
-          <div class="final-lock">
-            <span id="finalChallengeLock">
-              🔒
-            </span>
-          </div>
-
-
-          <div class="final-challenge-content">
-
-            <p class="section-kicker">
-              🏆 المهمة السرية
-            </p>
-
-            <h3>
-              تحدي العالمة النهائي
-            </h3>
-
-            <p id="finalChallengeDescription">
-              أكملي المحطات العشر
-              لفتح المهمة النهائية.
+            <p id="missionTip">
+              اضغطي على العناصر داخل التجربة، وليس على نقاط مخفية.
             </p>
 
           </div>
 
-
-          <div class="final-arrow">
-            ←
-          </div>
-
-        </button>
-
-      </section>
-
-    </main>
-
-  </section>
+        </aside>
 
 
-  <!-- =====================================================
-       3. شاشة الدرس / المختبر
-  ====================================================== -->
 
-  <section
-    id="lessonScreen"
-    class="screen"
-  >
-
-    <header class="app-header lesson-header">
-
-      <button
-        id="backToMapBtn"
-        class="back-button"
-        type="button"
-      >
-        <span>
-          → 
-        </span>
-
-        <span>
-          الخريطة
-        </span>
-      </button>
+        <!-- ====================================
+             مساحة التجربة
+        ===================================== -->
+        <section class="lab-panel">
 
 
-      <div class="lesson-header-stats">
+          <div class="lab-top">
 
-        <div class="stat-pill">
-          ⭐
-          <span id="lessonStarCount">
-            0
-          </span>
-        </div>
+            <div>
 
-        <div class="stat-pill">
-          ⚡
-          <span id="lessonXpCount">
-            0
-          </span>
-          XP
-        </div>
+              <span class="section-kicker">
+                المختبر التفاعلي
+              </span>
 
-        <button
-          id="lessonSoundBtn"
-          class="icon-button"
-          type="button"
-          aria-label="تشغيل أو كتم الصوت"
-        >
-          🔊
-        </button>
+              <h3 id="experimentTitle">
+                جرّبي بنفسك
+              </h3>
 
-      </div>
-
-    </header>
+            </div>
 
 
-    <main
-      id="lessonContent"
-      class="lesson-content"
-      aria-live="polite"
-    >
-      <!--
-        JavaScript يبني المختبر هنا
-      -->
-    </main>
+            <span
+              id="experimentStep"
+              class="experiment-step"
+            >
+              استكشف
+            </span>
 
-  </section>
-
-
-  <!-- =====================================================
-       4. التحدي النهائي
-  ====================================================== -->
-
-  <section
-    id="finalScreen"
-    class="screen"
-  >
-
-    <header class="app-header">
-
-      <button
-        id="finalBackBtn"
-        class="back-button"
-        type="button"
-      >
-        <span>
-          →
-        </span>
-
-        <span>
-          الخريطة
-        </span>
-      </button>
-
-
-      <div class="final-header-badge">
-        🏆 المهمة النهائية
-      </div>
-
-    </header>
-
-
-    <main class="final-main">
-
-      <div class="final-intro">
-
-        <div class="final-big-icon">
-          🧪
-        </div>
-
-        <p class="section-kicker">
-          المهمة الأخيرة
-        </p>
-
-        <h1>
-          هل أصبحتِ خبيرة
-          العناصر والمركبات؟
-        </h1>
-
-        <p>
-          ستواجهين مجموعة متنوعة من التحديات
-          من المحطات التي أنهيتِها.
-          أماكن الإجابات تتغير،
-          لذلك اعتمدي على فهمكِ 🔬
-        </p>
-
-      </div>
-
-
-      <div
-        id="finalQuizContainer"
-        class="final-quiz-container"
-      >
-        <!-- JavaScript -->
-      </div>
-
-    </main>
-
-  </section>
-
-
-  <!-- =====================================================
-       5. شاشة التخرج
-  ====================================================== -->
-
-  <section
-    id="graduationScreen"
-    class="screen"
-  >
-
-    <main class="graduation-main">
-
-      <div class="graduation-card">
-
-        <div class="graduation-sparkles">
-          ✨ ⭐ ✨
-        </div>
-
-
-        <div class="graduation-icon">
-          🏆
-        </div>
-
-
-        <p class="section-kicker">
-          اكتملت الرحلة
-        </p>
-
-
-        <h1>
-          مبروك يا
-          <span id="graduateName">
-            عالمة
-          </span>
-          !
-        </h1>
-
-
-        <p class="graduation-message">
-          أنهيتِ رحلة العناصر والمركبات،
-          ونفذتِ التجارب وسجلتِ
-          اكتشافاتكِ العلمية.
-        </p>
-
-
-        <!-- الشهادة -->
-
-        <div class="certificate">
-
-          <div class="certificate-top">
-            ⚛️ 🧪 🔬
           </div>
 
 
-          <p class="certificate-small">
-            شهادة إنجاز
-          </p>
+
+          <!-- أزرار التجربة -->
+          <div
+            id="experimentTools"
+            class="experiment-tools"
+          ></div>
 
 
-          <h2>
-            عالمة العناصر والمركبات
-          </h2>
+
+          <!-- مساحة التجربة -->
+          <div
+            id="experimentArea"
+            class="experiment-area"
+          ></div>
 
 
-          <p>
-            تُمنح هذه الشهادة للطالبة
-          </p>
 
-
-          <strong
-            id="certificateName"
-            class="certificate-name"
+          <!-- المعلومة العلمية -->
+          <div
+            id="scienceInfo"
+            class="science-info hidden"
           >
-            —
-          </strong>
 
-
-          <p>
-            لإكمالها جميع محطات
-            مختبر الوحدة الثانية
-          </p>
-
-
-          <div class="certificate-stats">
-
-            <div>
-              <span>
-                ⭐
-              </span>
-
-              <strong id="certificateStars">
-                10
-              </strong>
-
-              <small>
-                شارات
-              </small>
+            <div class="science-info-mark">
+              <span>✦</span>
             </div>
 
 
-            <div>
+            <div class="science-info-copy">
+
               <span>
-                ⚡
+                اكتشاف علمي
               </span>
 
-              <strong id="certificateXp">
-                0
-              </strong>
+              <h4 id="scienceInfoTitle">
+                معلومة
+              </h4>
 
-              <small>
-                XP
-              </small>
-            </div>
+              <p id="scienceInfoText"></p>
 
-
-            <div>
-              <span>
-                🧪
-              </span>
-
-              <strong>
-                10
-              </strong>
-
-              <small>
-                محطات
-              </small>
             </div>
 
           </div>
 
 
-          <div class="certificate-footer">
-            💜 تعلّمتِ بالتجربة والاكتشاف
-          </div>
 
-        </div>
+          <!-- ==================================
+               الملخص التلقائي
+          =================================== -->
+          <section class="notebook-section">
+
+            <div class="notebook-heading">
+
+              <div>
+
+                <span class="section-kicker">
+                  دفتر المختبر
+                </span>
+
+                <h3>
+                  ماذا تعلمت من التجربة؟
+                </h3>
+
+              </div>
 
 
-        <button
-          id="restartJourneyBtn"
-          class="main-button"
-          type="button"
-        >
-          🔄 أعيدي المغامرة
-        </button>
+              <span
+                id="notebookState"
+                class="notebook-state"
+              >
+                يكتمل تلقائيًا
+              </span>
+
+            </div>
+
+
+
+            <div class="notebook-grid">
+
+
+              <!-- الملاحظة -->
+              <article
+                id="observationCard"
+                class="notebook-card observation-card"
+              >
+
+                <div class="notebook-card-head">
+
+                  <span class="notebook-number">
+                    01
+                  </span>
+
+                  <strong>
+                    ما لاحظته
+                  </strong>
+
+                </div>
+
+
+                <p id="autoObservation">
+                  نفّذي النشاط الأساسي، وبعدها سأكتب لكِ الملاحظة
+                  بطريقة واضحة وبسيطة.
+                </p>
+
+              </article>
+
+
+
+              <!-- الاستنتاج -->
+              <article
+                id="conclusionCard"
+                class="notebook-card conclusion-card"
+              >
+
+                <div class="notebook-card-head">
+
+                  <span class="notebook-number">
+                    02
+                  </span>
+
+                  <strong>
+                    استنتاجي
+                  </strong>
+
+                </div>
+
+
+                <p id="autoConclusion">
+                  سيظهر الاستنتاج تلقائيًا عندما تكتمل التجربة الأساسية.
+                </p>
+
+              </article>
+
+            </div>
+
+          </section>
+
+
+
+          <!-- ==================================
+               سؤال الفهم
+          =================================== -->
+          <section
+            id="questionStage"
+            class="question-stage hidden"
+          >
+
+            <div class="question-header">
+
+              <div>
+
+                <span class="section-kicker">
+                  آخر خطوة
+                </span>
+
+                <h3>
+                  تأكدي من فهمك
+                </h3>
+
+              </div>
+
+
+              <span class="one-question">
+                سؤال واحد
+              </span>
+
+            </div>
+
+
+
+            <div class="question-box">
+
+              <p id="lessonQuestion"></p>
+
+              <div
+                id="questionChoices"
+                class="question-choices"
+              ></div>
+
+              <div
+                id="questionFeedback"
+                class="question-feedback hidden"
+              ></div>
+
+            </div>
+
+          </section>
+
+        </section>
 
       </div>
 
-    </main>
+    </section>
 
-  </section>
+  </main>
 
 
-  <!-- =====================================================
-       6. نافذة الشارة
-  ====================================================== -->
 
+  <!-- ========================================
+       احتفال نهاية المحطة
+  ========================================= -->
   <div
-    id="badgeModal"
-    class="modal hidden"
+    id="celebration"
+    class="celebration hidden"
     role="dialog"
     aria-modal="true"
-    aria-labelledby="badgeTitle"
   >
 
-    <div class="modal-card">
+    <div class="celebration-overlay"></div>
 
-      <div class="modal-sparkles">
-        ✨ ⭐ ✨
-      </div>
+
+    <div class="celebration-box">
 
 
       <div
-        id="earnedBadgeIcon"
-        class="earned-badge-icon"
+        class="celebration-sparkles"
+        aria-hidden="true"
       >
-        ⚛️
+        <i class="spark s1">✦</i>
+        <i class="spark s2">★</i>
+        <i class="spark s3">✦</i>
+        <i class="spark s4">★</i>
+        <i class="spark s5">✦</i>
+        <i class="spark s6">✦</i>
       </div>
 
 
-      <p class="section-kicker">
-        اكتشاف مسجّل!
-      </p>
+
+      <div class="celebration-medal">
+        <span>★</span>
+      </div>
 
 
-      <h2 id="badgeTitle">
-        شارة جديدة
+      <span class="celebration-kicker">
+        أبدعتِ!
+      </span>
+
+
+      <h2 id="celebrationHeading">
+        أتممتِ المحطة
       </h2>
 
 
-      <p id="badgeDescription">
-        أحسنتِ!
+      <p id="celebrationMessage">
+        اكتشاف رائع! حصلتِ على لقب علمي جديد.
       </p>
 
 
-      <div class="rewards-row">
 
-        <span class="reward-chip">
-          ⭐ +1 شارة
+      <div class="new-title-card">
+
+        <span class="new-title-small">
+          لقبك الجديد
         </span>
 
-        <span class="reward-chip">
-          ⚡ +100 XP
-        </span>
+        <strong id="earnedTitle">
+          عبقرية النبات
+        </strong>
 
       </div>
 
 
+
+      <div class="rewards">
+
+
+        <div class="reward">
+
+          <span>
+            ★
+          </span>
+
+          <div>
+            <strong id="rewardStars">
+              +3
+            </strong>
+
+            <small>
+              نجوم
+            </small>
+          </div>
+
+        </div>
+
+
+
+        <div class="reward">
+
+          <span class="reward-xp">
+            XP
+          </span>
+
+          <div>
+
+            <strong id="rewardXp">
+              +40
+            </strong>
+
+            <small>
+              خبرة
+            </small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <div
+        id="newStationNotice"
+        class="new-station-notice"
+      >
+
+        <span class="unlock-symbol">
+          ⌁
+        </span>
+
+        <div>
+
+          <strong>
+            فُتحت محطة جديدة
+          </strong>
+
+          <p id="newStationText">
+            ستجدينها مفتوحة في خريطة المحطات.
+          </p>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- يرجع للخريطة ولا ينتقل مباشرة -->
       <button
-        id="badgeContinueBtn"
-        class="main-button"
+        id="celebrationMapBtn"
+        class="primary-button celebration-button"
         type="button"
       >
-        تابعي الرحلة 🚀
+        العودة إلى المحطات
+        <b>←</b>
       </button>
 
     </div>
@@ -1087,29 +815,28 @@
   </div>
 
 
-  <!-- =====================================================
-       7. إشعار فتح محطة
-  ====================================================== -->
 
+  <!-- ========================================
+       رسالة صغيرة أثناء التجربة
+  ========================================= -->
   <div
-    id="unlockToast"
-    class="unlock-toast hidden"
+    id="toast"
+    class="toast"
     aria-live="polite"
   >
 
-    <span class="unlock-toast-icon">
-      🔓
+    <span class="toast-mark">
+      ✦
     </span>
-
 
     <div>
 
-      <strong>
-        تم فتح محطة جديدة!
+      <strong id="toastTitle">
+        رائع!
       </strong>
 
-      <p id="unlockText">
-        مغامرة جديدة تنتظركِ.
+      <p id="toastText">
+        اكتشاف جديد
       </p>
 
     </div>
@@ -1117,23 +844,120 @@
   </div>
 
 
-  <!-- =====================================================
-       8. طبقة الاحتفال
-  ====================================================== -->
 
+  <!-- ========================================
+       شاشة التحدي النهائي
+  ========================================= -->
+  <main id="finalView" class="view">
+
+    <section class="final-shell">
+
+
+      <button
+        id="finalMapBtn"
+        class="soft-button final-back"
+        type="button"
+      >
+        → العودة إلى المحطات
+      </button>
+
+
+      <div class="final-medal">
+        ★
+      </div>
+
+
+      <span class="section-kicker">
+        المحطة الأخيرة
+      </span>
+
+
+      <h2>
+        التحدي العلمي
+      </h2>
+
+
+      <p class="final-intro">
+        جمعتِ خبرتك من المحطات العشر.
+        استخدمي ما تعلمته لإكمال التحدي الأخير.
+      </p>
+
+
+      <div
+        id="finalChallenge"
+        class="final-challenge"
+      ></div>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- ========================================
+       الشهادة النهائية
+  ========================================= -->
   <div
-    id="celebrationLayer"
-    class="celebration-layer"
-    aria-hidden="true"
-  ></div>
+    id="certificateModal"
+    class="certificate-modal hidden"
+    role="dialog"
+    aria-modal="true"
+  >
+
+    <div class="certificate">
 
 
-  <!-- =====================================================
-       JavaScript
-  ====================================================== -->
+      <div class="certificate-decoration top-decoration">
+        ✦
+      </div>
 
+
+      <span class="certificate-label">
+        شهادة إنجاز علمي
+      </span>
+
+
+      <h2>
+        عالمة مختبر الحياة
+      </h2>
+
+
+      <p>
+        أتممتِ المحطات العلمية العشر،
+        واستكشفتِ عالم النباتات وجسم الإنسان
+        بالملاحظة والتجربة والاستنتاج.
+      </p>
+
+
+      <div class="certificate-divider"></div>
+
+
+      <strong id="certificateTitles">
+        10 ألقاب علمية
+      </strong>
+
+
+      <span id="certificateStars">
+        0 نجمة
+      </span>
+
+
+      <button
+        id="closeCertificateBtn"
+        class="primary-button"
+        type="button"
+      >
+        العودة إلى إنجازاتي
+      </button>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- JavaScript -->
   <script src="script.js"></script>
 
 </body>
-
 </html>
